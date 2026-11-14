@@ -68,10 +68,25 @@ class GenerateTests(unittest.TestCase):
             ],
         }
         logged = []
-        asset = pick_asset(release, log=logged.append)
+        asset = pick_asset(release, log=logged.append, repo="o/r")
         self.assertEqual(asset["browser_download_url"], "u1")
         self.assertEqual(len(logged), 1)
+        self.assertIn("o/r", logged[0])
         self.assertIn("1.0.0", logged[0])
+
+    def test_pick_asset_prefers_asset_named_first_in_body(self):
+        release = {
+            "tag_name": "1.0.0",
+            "body": f"Download {ASSET_B} for the default build",
+            "assets": [
+                {"name": ASSET_A, "browser_download_url": "u1"},
+                {"name": ASSET_B, "browser_download_url": "u2"},
+            ],
+        }
+        logged = []
+        asset = pick_asset(release, log=logged.append, repo="o/r")
+        self.assertEqual(asset["browser_download_url"], "u2")
+        self.assertEqual(len(logged), 1)
 
     def test_build_entry_skips_drafts_keeps_prereleases(self):
         entry = build_entry("roc-lang/basic-cli", "cli", fixture(), log=lambda m: None)

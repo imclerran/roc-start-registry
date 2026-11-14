@@ -20,14 +20,19 @@ def print_warning(msg: str) -> None:
     sys.stderr.write(f"warning: {msg}\n")
 
 
-def pick_asset(release: dict, log=print_warning) -> dict | None:
-    """Return the first asset named like a bundle, warning if several match."""
+def pick_asset(release: dict, log=print_warning, repo: str = "") -> dict | None:
+    """Return the bundle asset; with several, prefer the one named first in the release body."""
     matches = [a for a in release.get("assets", []) if ASSET_RE.match(a.get("name", ""))]
     if not matches:
         return None
+    chosen = matches[0]
     if len(matches) > 1:
-        log(f'release {release.get("tag_name")}: {len(matches)} matching assets, using the first')
-    return matches[0]
+        body = release.get("body") or ""
+        positions = [(body.find(a["name"]), i) for i, a in enumerate(matches) if a["name"] in body]
+        if positions:
+            chosen = matches[min(positions)[1]]
+        log(f'{repo} {release.get("tag_name")}: {len(matches)} matching assets, using {chosen["name"]}')
+    return chosen
 
 
 def build_entry(repo: str, alias: str, releases: list[dict], log=print_warning) -> dict:
@@ -35,7 +40,7 @@ def build_entry(repo: str, alias: str, releases: list[dict], log=print_warning) 
     for release in releases:
         if release.get("draft"):
             continue
-        asset = pick_asset(release, log)
+        asset = pick_asset(release, log, repo=repo)
         if asset is None:
             continue
         kept.append(
