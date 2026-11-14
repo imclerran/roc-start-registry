@@ -1,0 +1,5 @@
+# repo,tag,hash,variant
+lukewilliamboswell/roc-ray,0.12.2,A8Dt5CorYsEtHFh8h7SfMtpzSy73UWbaB5Twy9JoYS1U,default
+lukewilliamboswell/roc-ray,0.12.2,9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3,wayland
+lukewilliamboswell/roc-signals,0.2.0-rc3,HVTvH6n1bcFccyLz5xtdpjRrStMa2T6CmHQRiuTtTs6F,web
+lukewilliamboswell/roc-signals,0.2.0-rc3,3Qv4m75aBJX1wfiatwkHgXi5mWyp17udxtRtugEMtHHV,gui

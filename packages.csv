@@ -9,7 +9,8 @@ Karakatiza666/roc-toml,toml
 kili-ilo/roc-random,random
 lukewilliamboswell/roc-ansi,ansi
 lukewilliamboswell/roc-font,font
-lukewilliamboswell/roc-graph-layout,graph
+lukewilliamboswell/roc-graph-layout,graph,layout
+lukewilliamboswell/roc-graph-layout,mermaid,mermaid
 lukewilliamboswell/roc-pandoc,pandoc
 lukewilliamboswell/roc-parser,parser
 lukewilliamboswell/roc-pdf,pdf

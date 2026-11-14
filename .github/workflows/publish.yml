@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  issues: write
 concurrency: publish
 jobs:
   publish:
@@ -18,7 +19,7 @@ jobs:
           else
             mkdir site && git -C site init -b gh-pages
           fi
-      - run: python3 -m scripts.generate --out site
+      - run: python3 -m scripts.generate --out site --unresolved unresolved.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit and push when changed
@@ -30,3 +31,15 @@ jobs:
           git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update the tracking issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          title="Unresolved multi-bundle releases"
+          num=$(gh issue list --state open --json number,title --jq ".[] | select(.title == \"$title\") | .number" | head -n1)
+          if [ -s unresolved.txt ]; then
+            { printf 'These releases ship several bundles the registry cannot identify, so they are not listed yet. Add rows to `bundles.csv` or ask upstream to prefix the bundle filenames with the variant name.\n\n'; sed 's/^/- /' unresolved.txt; } > issue-body.md
+            if [ -n "$num" ]; then gh issue edit "$num" --body-file issue-body.md; else gh issue create --title "$title" --body-file issue-body.md; fi
+          elif [ -n "$num" ]; then
+            gh issue close "$num" --comment "Every multi-bundle release is now identified."
+          fi

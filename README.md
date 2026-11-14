@@ -28,6 +28,34 @@ generated app header (for example `import ansi.ANSI`) and must match
 `^[a-z][a-z0-9_]*$`. Lines starting with `#` and a header row are ignored.
 Repositories and aliases must be unique within a file.
 
+A repository that publishes several bundles per release (one per build or
+per package) gets one row per variant instead, with an optional third column
+`variant` and its own alias:
+
+```
+lukewilliamboswell/roc-ray,pf,default
+lukewilliamboswell/roc-ray,pf,wayland
+lukewilliamboswell/roc-graph-layout,graph,layout
+lukewilliamboswell/roc-graph-layout,mermaid,mermaid
+```
+
+The first row for a repository is its default variant. Variant names match
+`^[a-z][a-z0-9_]*$`, each `(repo, variant)` pair appears once, and a
+repository may not appear both with and without a variant.
+
+When a release's bundles carry no variant prefix in their filenames, map each
+one in `bundles.csv`, using the hashes from the release notes:
+
+```
+# repo,tag,hash,variant
+lukewilliamboswell/roc-ray,0.12.2,A8Dt5CorYsEtHFh8h7SfMtpzSy73UWbaB5Twy9JoYS1U,default
+lukewilliamboswell/roc-ray,0.12.2,9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3,wayland
+```
+
+The hash must be 44 base58 characters, the repository must have variant rows,
+and the variant must be one of them. Rows never change, because hashes are
+permanent; once upstream prefixes its filenames, new releases need no rows.
+
 The pull request template asks you to confirm three things: the repository has
 at least one release whose bundle is a `.tar.zst` built with the new Roc
 compiler, you have built an app against the latest release on a current
@@ -84,21 +112,44 @@ used; it is a minimal `app [main!] {{dependencies}}` with an empty `main!`.
     {
       "repo": "roc-lang/basic-cli",
       "alias": "pf",
+      "variant": null,
       "releases": [
         { "tag": "0.28.0", "url": "https://github.com/roc-lang/basic-cli/releases/download/0.28.0/2yhxoR7cZPSYbyUzPWULFw8AA6QEcdsgFNRmzu7pZbst.tar.zst", "published": "2026-11-11T06:26:08Z" }
       ]
     }
   ],
-  "packages": [ { "repo": "...", "alias": "...", "releases": [ ... ] } ]
+  "packages": [ { "repo": "...", "alias": "...", "variant": null, "releases": [ ... ] } ]
 }
 ```
 
-Releases are ordered newest first by `published`. Only `.tar.zst` assets with
-44-character base58 names (the new compiler's bundle naming) are listed. When a
-release has several such assets, the one named first in the release notes is
-used, else the first in API order; the generator logs a warning for these
-releases. A release with no matching asset is omitted. A repository with no
-qualifying releases is still listed, with an empty `releases` array.
+There is one entry per CSV row, so a repository with variants has one entry
+per variant; `variant` is the row's variant, or `null` for a repository
+without variants. Releases are ordered newest first by `published`.
+
+Bundles are the release assets named `<hash>.tar.zst` or
+`<variant>-<hash>.tar.zst`, where `<hash>` is the 44 base58 characters the
+new compiler's bundler produces and the optional prefix is a variant name.
+Other assets, including legacy `.tar.br` bundles, are ignored. Nothing is
+guessed: each bundle in a release is assigned to a variant by these rules, in
+order, or the release is unresolved:
+
+1. A repository without variant rows must ship exactly one bundle per release.
+2. A single bundle in a repository with variant rows belongs to the default
+   variant.
+3. With several bundles, a filename prefix names the variant, which must be
+   declared for the repository.
+4. A bundle without a prefix is looked up in `bundles.csv` by repo, tag, and
+   hash.
+5. At most one bundle per release may be a bare hash with no row; it belongs
+   to the default variant.
+6. Two bundles assigned to the same variant make the release unresolved.
+
+An unresolved release is omitted and logged with its repository, tag, and
+reason. The publish workflow keeps one issue titled "Unresolved multi-bundle
+releases" listing the unresolved releases that are newer than their
+repository's newest resolved release, and closes it when that list is empty.
+A release with no bundle is omitted. A repository with no qualifying releases
+is still listed, with an empty `releases` array.
 
 ### templates.json
 

@@ -43,6 +43,7 @@ the new repository.
 ```
 packages.csv
 platforms.csv
+bundles.csv                      # hash → variant for releases with unprefixed bundles
 verified-nightly                 # one line, informational, hand-edited
 templates/
   generic.roc
@@ -54,7 +55,7 @@ scripts/
   fixtures/
 .github/
   workflows/
-    publish.yml                  # cron + dispatch → gh-pages
+    publish.yml                  # cron + dispatch → gh-pages, updates tracking issue
     pr-checks.yml
   PULL_REQUEST_TEMPLATE.md
 README.md
@@ -70,14 +71,47 @@ lukewilliamboswell/roc-ansi,ansi
 imclerran/roc-isodate,dt
 ```
 
-- Columns are `repo` (GitHub `owner/name`) and `alias` (the shorthand used in
-  the generated app header, e.g. `import ansi.ANSI`).
+- Columns are `repo` (GitHub `owner/name`), `alias` (the shorthand used in
+  the generated app header, e.g. `import ansi.ANSI`), and an optional third
+  column `variant`.
 - A header row and lines beginning with `#` are allowed and ignored.
-- One package or platform per line. Nothing else is recorded per entry.
+- One entry per line. A repository that publishes one bundle per release has
+  one row with no variant. A repository that publishes several bundles per
+  release (roc-ray ships a default and a Wayland build; roc-signals a web
+  and a GUI platform; roc-graph-layout a layout and a Mermaid package) has
+  one row per variant, each with its own alias:
+
+  ```
+  lukewilliamboswell/roc-ray,pf,default
+  lukewilliamboswell/roc-ray,pf,wayland
+  lukewilliamboswell/roc-graph-layout,graph,layout
+  lukewilliamboswell/roc-graph-layout,mermaid,mermaid
+  ```
+
+  The first row for a repository is its default variant. Variant names match
+  `^[a-z][a-z0-9_]*$`. A repository may not appear both with and without a
+  variant.
 - CSV was chosen over JSON because the client never reads these files; they
   exist for humans, an admission PR is one added line with a clean diff, and
   there is no trailing-comma churn. If per-entry metadata is ever needed, the
   inputs move to TOML and only `generate.py` changes.
+
+### `bundles.csv`
+
+Identifies bundles that carry no variant prefix in their filename (see
+Bundle identification). Columns `repo,tag,hash,variant`:
+
+```
+# repo,tag,hash,variant
+lukewilliamboswell/roc-ray,0.12.2,A8Dt5CorYsEtHFh8h7SfMtpzSy73UWbaB5Twy9JoYS1U,default
+lukewilliamboswell/roc-ray,0.12.2,9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3,wayland
+```
+
+Rows are written by hand from the release notes, once, and never change
+because hashes are permanent. The repository must have variant rows and the
+variant must be one of them. This file is a bridge: upstream issues
+(roc-ray #280, roc-signals #273) ask for prefixed filenames, after which new
+releases need no rows.
 
 ### `verified-nightly`
 
@@ -140,36 +174,61 @@ repository's Pages URL. roc-start reads both files from there.
     {
       "repo": "roc-lang/basic-cli",
       "alias": "pf",
+      "variant": null,
       "releases": [
         { "tag": "0.28.0", "url": "https://github.com/roc-lang/basic-cli/releases/download/0.28.0/2yhxoR7cZPSYbyUzPWULFw8AA6QEcdsgFNRmzu7pZbst.tar.zst", "published": "2026-11-11T06:26:08Z" }
       ]
     }
   ],
-  "packages": [ { "repo": "...", "alias": "...", "releases": [ ... ] } ]
+  "packages": [ { "repo": "...", "alias": "...", "variant": null, "releases": [ ... ] } ]
 }
 ```
 
 - `releases` is ordered newest first by `published`.
-- Only assets whose filename matches `^[1-9A-HJ-NP-Za-km-z]{44}\.tar\.zst$`
-  (44 base58 characters, the new compiler's bundle naming) are included.
-  Legacy bundles are `.tar.br` with 43 base64url characters and are dropped.
-- When a release carries more than one matching asset (roc-ray publishes a
-  default and a Wayland bundle; roc-signals a web and a GUI platform;
-  roc-graph-layout two packages), the generator picks the asset whose
-  filename appears earliest in the release notes body, because authors list
-  the primary bundle first; if the body names none of them it falls back to
-  the first asset in API order. Either way it logs a warning naming the
-  repository and tag so the maintainer can see which releases are
-  ambiguous. The remaining bundles are not listed.
-- A release with no matching asset is omitted. A repository with no
-  qualifying releases is still listed with an empty `releases` array so the
-  client can tell "unknown package" from "no releases yet".
+- One entry per CSV row, so a repository with variants produces one entry
+  per variant. Each entry carries `"variant"`: the variant name, or `null`
+  for a repository without variants.
+- Bundle assets are those whose filename matches
+  `^(?:([a-z][a-z0-9_]*)-)?([1-9A-HJ-NP-Za-km-z]{44})\.tar\.zst$`: an
+  optional variant prefix, then the 44-base58-character hash the new
+  compiler's bundler produces. Legacy bundles are `.tar.br` with 43
+  base64url characters and are dropped. The compiler accepts prefixed URLs;
+  roc-graph-layout already publishes `layout-<hash>` and `mermaid-<hash>`.
+- A release with no bundle asset is omitted. A repository with no qualifying
+  releases is still listed with an empty `releases` array so the client can
+  tell "unknown package" from "no releases yet".
+
+#### Bundle identification
+
+Nothing is guessed. Each bundle in a release is assigned to a variant by
+these rules, in order, or the release is unresolved:
+
+1. A repository without variant rows must ship exactly one bundle per
+   release; that bundle is the entry's release. Several bundles make the
+   release unresolved (the repository needs variant rows).
+2. A single bundle in a repository with variant rows belongs to the default
+   variant (roc-ray's releases before the Wayland build existed).
+3. With several bundles, a filename prefix names the variant, which must be
+   one of the declared rows.
+4. A bundle without a prefix is looked up in `bundles.csv` by
+   `(repo, tag, hash)`.
+5. At most one bundle per release may be a bare hash with no row; it is the
+   default variant. Two or more make the release unresolved.
+6. Two bundles assigned to the same variant make the release unresolved.
+
+An unresolved release is omitted from `releases.json` and logged with the
+repository, tag, and reason. The publish workflow maintains one tracking
+issue titled "Unresolved multi-bundle releases" listing every unresolved
+release that is newer than its repository's newest resolved release, so a
+new release that users cannot yet select is visible without reading logs,
+while unresolved history stays out of the way. The issue is updated when the
+list changes and closed when it is empty.
 - Field names in this file are consumed by Roc code, where `package`,
   `packages`, and `platform` are reserved words. The top-level keys
   `platforms` and `packages` are therefore parsed into Roc record fields
   named `platforms` and `pkgs`; the JSON keys themselves stay readable.
-  Entry fields (`repo`, `alias`, `releases`, `tag`, `url`, `published`) are
-  all legal Roc field names.
+  Entry fields (`repo`, `alias`, `variant`, `releases`, `tag`, `url`,
+  `published`) are all legal Roc field names.
 
 ### `templates.json`
 
@@ -203,14 +262,17 @@ Triggers: nightly cron and `workflow_dispatch`.
 1. Check out `main`.
 2. Run `scripts/generate.py` with the built-in `GITHUB_TOKEN`. For each repo
    in both CSVs it calls `GET /repos/{repo}/releases?per_page=100` with
-   pagination, filters assets by the filename rule, and writes
-   `releases.json`, `templates.json`, and a copy of `templates/` into an
-   output directory. A repository that returns 404 or any other error is
+   pagination, filters assets by the filename rule, assigns bundles to
+   variants per Bundle identification, and writes `releases.json`,
+   `templates.json`, and a copy of `templates/` into an output directory,
+   plus the list of unresolved releases to a file outside it. A repository that returns 404 or any other error is
    recorded as a warning in the job log and listed with an empty `releases`
    array; it never fails the job.
 3. Compare the output directory with the current `gh-pages` content. Commit
    and push only when something changed, so the Pages deploy is skipped on
    quiet nights.
+4. Create, update, or close the "Unresolved multi-bundle releases" tracking
+   issue from the unresolved list (requires `issues: write`).
 
 No Roc toolchain is installed. No package is downloaded, built, or checked.
 
@@ -218,9 +280,14 @@ No Roc toolchain is installed. No package is downloaded, built, or checked.
 
 Runs `scripts/check_inputs.py` on every pull request and fails on any of:
 
-- A CSV line that is not `owner/name,alias` with a valid GitHub repository
-  path and an alias matching `^[a-z][a-z0-9_]*$`.
-- A duplicate repository or duplicate alias within a file.
+- A CSV line that is not `owner/name,alias` or `owner/name,alias,variant`
+  with a valid GitHub repository path, an alias matching
+  `^[a-z][a-z0-9_]*$`, and a variant matching the same pattern.
+- A duplicate `(repository, variant)` or duplicate alias within a file, or a
+  repository that appears both with and without a variant.
+- A `bundles.csv` line that is not `repo,tag,hash,variant` with a
+  44-base58-character hash, a repository that has variant rows, and a
+  variant declared for it; or a duplicate `(repo, tag, hash)`.
 - A template that does not contain `{{dependencies}}` exactly once.
 - A template containing any `{{...}}` token other than `{{dependencies}}`
   or `{{pf}}` (catches typos such as `{{platform}}`).
@@ -232,8 +299,10 @@ Runs `scripts/check_inputs.py` on every pull request and fails on any of:
 ### `test_generate.py`
 
 Python `unittest` over recorded API responses in `scripts/fixtures/`,
-covering: filename filtering, newest-first ordering, empty-release entries,
-404 handling, and template index generation. Runs in `pr-checks.yml`.
+covering: filename filtering with and without prefixes, every bundle
+identification rule and each unresolved case, newest-first ordering,
+empty-release entries, 404 handling, the tracking-issue list, and template
+index generation. Runs in `pr-checks.yml`.
 
 ## Admission process
 
@@ -256,7 +325,8 @@ roc-start depends on exactly these guarantees:
   `GET <pages-url>/templates/<owner>/<name>/<tag>.roc` return template text
   for every entry in `templates.json`.
 - Every `url` in `releases.json` points at a `.tar.zst` bundle for the new
-  compiler.
+  compiler, and every entry's `variant` is either `null` or the name a user
+  can select; the first entry for a repository is its default variant.
 
 Nothing else about the repository's layout is part of the contract. roc-start
 ships the Pages URL as its default and allows `registry_url` in its config to

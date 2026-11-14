@@ -3,7 +3,8 @@ import re
 import sys
 from pathlib import Path
 
-ASSET_RE = re.compile(r"^[1-9A-HJ-NP-Za-km-z]{44}\.tar\.zst$")
+ASSET_RE = re.compile(r"^(?:(?P<variant>[a-z][a-z0-9_]*)-)?(?P<hash>[1-9A-HJ-NP-Za-km-z]{44})\.tar\.zst$")
+HASH_RE = re.compile(r"^[1-9A-HJ-NP-Za-km-z]{44}$")
 ALIAS_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 REPO_RE = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?/[A-Za-z0-9._-]+$")
 TAG_RE = re.compile(r"^v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$")
@@ -14,23 +15,44 @@ REQUIRES_RE = re.compile(
 )
 
 REQUIRES_PREFIX = "# requires:"
+CSV_HEADERS = ("repo,alias", "repo,alias,variant")
+BUNDLES_HEADER = "repo,tag,hash,variant"
 
 
-def _csv_rows_with_lines(path: Path) -> list[tuple[int, str, str]]:
+def _data_lines(path: Path, headers: tuple[str, ...]) -> list[tuple[int, list[str]]]:
+    """Return (line number, stripped fields), skipping blanks, comments, and header rows."""
     rows = []
     text = path.read_text(encoding="utf-8")
     for number, raw in enumerate(text.splitlines(), start=1):
         line = raw.strip()
-        if not line or line.startswith("#") or line == "repo,alias":
+        if not line or line.startswith("#") or line in headers:
             continue
-        repo, _, alias = line.partition(",")
-        rows.append((number, repo.strip(), alias.strip()))
+        rows.append((number, [field.strip() for field in line.split(",")]))
     return rows
 
 
-def read_csv_rows(path: Path) -> list[tuple[str, str]]:
-    """Return (repo, alias) rows, skipping blanks, comments, and the header."""
-    return [(repo, alias) for _, repo, alias in _csv_rows_with_lines(path)]
+def _csv_rows_with_lines(path: Path) -> list[tuple[int, list[str]]]:
+    return _data_lines(path, CSV_HEADERS)
+
+
+def read_csv_rows(path: Path) -> list[tuple[str, str, str | None]]:
+    """Return (repo, alias, variant) rows; variant is None when the column is absent."""
+    rows = []
+    for _, fields in _csv_rows_with_lines(path):
+        fields = fields + [""] * (2 - len(fields))
+        rows.append((fields[0], fields[1], fields[2] if len(fields) > 2 else None))
+    return rows
+
+
+def read_bundle_rows(path: Path) -> dict[tuple[str, str, str], str]:
+    """Map (repo, tag, hash) to variant from bundles.csv; a missing file gives {}."""
+    if not path.is_file():
+        return {}
+    return {
+        (fields[0], fields[1], fields[2]): fields[3]
+        for _, fields in _data_lines(path, (BUNDLES_HEADER,))
+        if len(fields) == 4
+    }
 
 
 def parse_requires(text: str) -> list[str]:
@@ -41,28 +63,68 @@ def parse_requires(text: str) -> list[str]:
     return [r.strip() for r in first[len("# requires:"):].split(",")]
 
 
-def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str]) -> list[str]:
+def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str]) -> dict[str, list]:
+    """Validate a CSV list; return each repo's variants in CSV order ([None] without variants)."""
     path = root / name
     if not path.is_file():
         errors.append(f"{name}: file is missing")
-        return []
-    repos, aliases = {}, {}
-    for number, repo, alias in _csv_rows_with_lines(path):
+        return {}
+    variants: dict[str, list] = {}
+    seen: dict[tuple[str, str | None], int] = {}
+    aliases: dict[str, int] = {}
+    for number, fields in _csv_rows_with_lines(path):
+        if len(fields) not in (2, 3):
+            errors.append(f"{name}:{number}: expected repo,alias or repo,alias,variant")
+            continue
+        repo, alias = fields[0], fields[1]
+        variant = fields[2] if len(fields) == 3 else None
         if not REPO_RE.match(repo):
             errors.append(f'{name}:{number}: repo "{repo}" does not match {REPO_RE.pattern}')
         if not ALIAS_RE.match(alias):
             errors.append(f'{name}:{number}: alias "{alias}" does not match {ALIAS_RE.pattern}')
+        if variant is not None and not ALIAS_RE.match(variant):
+            errors.append(f'{name}:{number}: variant "{variant}" does not match {ALIAS_RE.pattern}')
         if is_platform and alias != "pf":
             errors.append(f'{name}:{number}: platform alias "{alias}" must be "pf"')
-        if repo in repos:
-            errors.append(f'{name}:{number}: duplicate repo "{repo}" (first on line {repos[repo]})')
+        key = (repo, variant)
+        if key in seen:
+            what = f'repo "{repo}"' if variant is None else f'repo "{repo}" variant "{variant}"'
+            errors.append(f"{name}:{number}: duplicate {what} (first on line {seen[key]})")
+        elif repo in variants and (variant is None) != (variants[repo][0] is None):
+            errors.append(f'{name}:{number}: repo "{repo}" appears both with and without a variant')
         else:
-            repos[repo] = number
+            seen[key] = number
+            variants.setdefault(repo, []).append(variant)
         if not is_platform and alias in aliases:
             errors.append(f'{name}:{number}: duplicate alias "{alias}" (first on line {aliases[alias]})')
         else:
             aliases.setdefault(alias, number)
-    return list(repos)
+    return variants
+
+
+def _check_bundles(root: Path, variants: dict[str, list], errors: list[str]) -> None:
+    path = root / "bundles.csv"
+    if not path.is_file():
+        return
+    seen: dict[tuple[str, str, str], int] = {}
+    for number, fields in _data_lines(path, (BUNDLES_HEADER,)):
+        where = f"bundles.csv:{number}:"
+        if len(fields) != 4:
+            errors.append(f"{where} expected repo,tag,hash,variant")
+            continue
+        repo, tag, hash_, variant = fields
+        if not HASH_RE.match(hash_):
+            errors.append(f'{where} hash "{hash_}" is not 44 base58 characters')
+        declared = [v for v in variants.get(repo, []) if v is not None]
+        if not declared:
+            errors.append(f'{where} repo "{repo}" has no variant rows in packages.csv or platforms.csv')
+        elif variant not in declared:
+            errors.append(f'{where} variant "{variant}" is not declared for "{repo}"')
+        key = (repo, tag, hash_)
+        if key in seen:
+            errors.append(f"{where} duplicate bundle {repo} {tag} {hash_} (first on line {seen[key]})")
+        else:
+            seen[key] = number
 
 
 def _check_template(root: Path, path: Path, packages: set[str], errors: list[str]) -> None:
@@ -88,8 +150,11 @@ def _check_template(root: Path, path: Path, packages: set[str], errors: list[str
 
 def check_inputs(root: Path) -> list[str]:
     errors: list[str] = []
-    package_repos = set(_check_csv(root, "packages.csv", False, errors))
-    platform_repos = set(_check_csv(root, "platforms.csv", True, errors))
+    package_variants = _check_csv(root, "packages.csv", False, errors)
+    platform_variants = _check_csv(root, "platforms.csv", True, errors)
+    package_repos = set(package_variants)
+    platform_repos = set(platform_variants)
+    _check_bundles(root, {**package_variants, **platform_variants}, errors)
 
     nightly_path = root / "verified-nightly"
     if not nightly_path.is_file():

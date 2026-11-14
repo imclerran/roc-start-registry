@@ -5,8 +5,10 @@ lukewilliamboswell/roc-gui,pf
 lukewilliamboswell/roc-platform-template-go,pf
 lukewilliamboswell/roc-platform-template-rust,pf
 lukewilliamboswell/roc-platform-template-zig,pf
-lukewilliamboswell/roc-ray,pf
-lukewilliamboswell/roc-signals,pf
+lukewilliamboswell/roc-ray,pf,default
+lukewilliamboswell/roc-ray,pf,wayland
+lukewilliamboswell/roc-signals,pf,web
+lukewilliamboswell/roc-signals,pf,gui
 lukewilliamboswell/roc-wasm4,pf
 niclas-ahden/joy,pf
 roc-lang/basic-cli,pf
