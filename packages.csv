@@ -14,6 +14,7 @@ lukewilliamboswell/roc-graph-layout,mermaid,mermaid
 lukewilliamboswell/roc-pandoc,pandoc
 lukewilliamboswell/roc-parser,parser
 lukewilliamboswell/roc-pdf,pdf
+lukewilliamboswell/roc-signals,signals,signals
 lukewilliamboswell/weaver,weaver
 niclas-ahden/joy-html,html
 niclas-ahden/roc-base64,base64

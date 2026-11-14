@@ -111,6 +111,22 @@ class GenerateTests(unittest.TestCase):
         result, _ = self.identify("1.0.0", VARIANTS)
         self.assertEqual(asset_name(result), {"default": f"{H['G']}.tar.zst"})
 
+    def lone(self, name):
+        return {"tag_name": "2.0.0", "published_at": "2026-04-01T00:00:00Z",
+                "assets": [{"name": name, "browser_download_url": f"https://example.invalid/{name}"}]}
+
+    def test_identify_single_prefixed_bundle_uses_prefix(self):
+        name = f"wayland-{H['B']}.tar.zst"
+        result = generate.identify_bundles("x/ray", self.lone(name), VARIANTS, {}, log=quiet)
+        self.assertEqual(asset_name(result), {"wayland": name})
+
+    def test_identify_single_undeclared_prefix_unresolved(self):
+        logged = []
+        result = generate.identify_bundles("x/ray", self.lone(f"other-{H['H']}.tar.zst"), VARIANTS, {},
+                                           log=logged.append)
+        self.assertIsNone(result)
+        self.assertEqual(logged, ["x/ray 2.0.0: unresolved — prefix 'other' is not a declared variant"])
+
     def test_identify_prefixed(self):
         result, logged = self.identify("1.3.0", VARIANTS)
         self.assertEqual(
@@ -294,6 +310,36 @@ class GenerateTests(unittest.TestCase):
         )
         self.assertEqual(len(result["packages"][2]["releases"]), 3)
         self.assertEqual(len(result["platforms"][0]["releases"]), 3)
+
+    def test_build_releases_repo_in_both_files(self):
+        release = {
+            "tag_name": "1.0.0", "draft": False, "published_at": "2026-01-01T00:00:00Z",
+            "assets": [
+                {"name": f"{H['A']}.tar.zst", "browser_download_url": "u-platform"},
+                {"name": f"tool-{H['B']}.tar.zst", "browser_download_url": "u-tool"},
+            ],
+        }
+        calls = []
+
+        def fetch(repo):
+            calls.append(repo)
+            return [release]
+
+        doc, unresolved = build_releases(
+            [("a/b", "pf", "default")], [("a/b", "tool", "tool")], fetch, "n", "now", {}, log=quiet
+        )
+        self.assertEqual(calls, ["a/b"])
+        self.assertEqual(
+            doc["platforms"],
+            [{"repo": "a/b", "alias": "pf", "variant": "default",
+              "releases": [{"tag": "1.0.0", "url": "u-platform", "published": "2026-01-01T00:00:00Z"}]}],
+        )
+        self.assertEqual(
+            doc["packages"],
+            [{"repo": "a/b", "alias": "tool", "variant": "tool",
+              "releases": [{"tag": "1.0.0", "url": "u-tool", "published": "2026-01-01T00:00:00Z"}]}],
+        )
+        self.assertEqual(unresolved, [])
 
     def test_read_rows_tolerates_crlf_header_blank(self):
         path = write(self.tmp / "p.csv", "repo,alias\r\n\r\n# comment\r\na/b,b\r\nc/d, d \r\n")

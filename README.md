@@ -39,9 +39,15 @@ lukewilliamboswell/roc-graph-layout,graph,layout
 lukewilliamboswell/roc-graph-layout,mermaid,mermaid
 ```
 
-The first row for a repository is its default variant. Variant names match
-`^[a-z][a-z0-9_]*$`, each `(repo, variant)` pair appears once, and a
-repository may not appear both with and without a variant.
+A repository's variants may span both files when one release ships a
+platform and a package: roc-signals has the platform row
+`lukewilliamboswell/roc-signals,pf,default` in `platforms.csv` and the
+package row `lukewilliamboswell/roc-signals,signals,signals` in
+`packages.csv`. The default variant is the repository's first row in
+`platforms.csv`, or in `packages.csv` if it has no platform row. Variant
+names match `^[a-z][a-z0-9_]*$`, each `(repo, variant)` pair appears once
+across both files, and a repository with a variant row may not also have a
+row without one in either file.
 
 When a release's bundles carry no variant prefix in their filenames, map each
 one in `bundles.csv`, using the hashes from the release notes:
@@ -53,7 +59,7 @@ lukewilliamboswell/roc-ray,0.12.2,9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3,w
 ```
 
 The hash must be 44 base58 characters, the repository must have variant rows,
-and the variant must be one of them. Rows never change, because hashes are
+and the variant must be one of them, declared in either file. Rows never change, because hashes are
 permanent; once upstream prefixes its filenames, new releases need no rows.
 
 The pull request template asks you to confirm three things: the repository has
@@ -134,10 +140,11 @@ guessed: each bundle in a release is assigned to a variant by these rules, in
 order, or the release is unresolved:
 
 1. A repository without variant rows must ship exactly one bundle per release.
-2. A single bundle in a repository with variant rows belongs to the default
-   variant.
-3. With several bundles, a filename prefix names the variant, which must be
-   declared for the repository.
+2. A single bare bundle in a repository with variant rows belongs to the
+   default variant.
+3. A filename prefix names the variant, which must be declared for the
+   repository; an undeclared prefix makes the release unresolved, even for a
+   single bundle.
 4. A bundle without a prefix is looked up in `bundles.csv` by repo, tag, and
    hash.
 5. At most one bundle per release may be a bare hash with no row; it belongs

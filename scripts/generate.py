@@ -34,7 +34,7 @@ def _assign(repo: str, release: dict, variants: list[str], bundle_rows: dict) ->
         if len(bundles) > 1:
             return None, "several bundles but no variant rows"
         return {None: bundles[0][2]}, ""
-    if len(bundles) == 1:  # rule 2
+    if len(bundles) == 1 and bundles[0][0] is None:  # rule 2: a lone bare bundle
         return {variants[0]: bundles[0][2]}, ""
     named, bare = [], []
     for prefix, hash_, asset in bundles:
@@ -125,20 +125,24 @@ def build_releases(
 ) -> tuple[dict, list[dict]]:
     unresolved: list[dict] = []
 
-    def entries(rows):
-        by_repo: dict[str, list[tuple[str, str | None]]] = {}
-        for repo, alias, variant in rows:
-            by_repo.setdefault(repo, []).append((alias, variant))
-        built: dict[str, list[dict]] = {}
-        for repo, repo_rows in by_repo.items():
-            try:
-                raw = fetch(repo)
-            except Exception as exc:
-                log(f"could not fetch releases for {repo}: {exc}")
-                raw = []
-            built[repo], missing = build_entries(repo, repo_rows, raw, bundle_rows, log)
-            unresolved.extend(missing)
-        position = {repo: 0 for repo in built}
+    # A repo's variants may span both files: group its rows platform rows first, so rows[0] is the default.
+    by_repo: dict[str, list[tuple[str, str | None]]] = {}
+    for repo, alias, variant in list(platform_rows) + list(package_rows):
+        by_repo.setdefault(repo, []).append((alias, variant))
+    built: dict[str, list[dict]] = {}
+    for repo, repo_rows in by_repo.items():
+        try:
+            raw = fetch(repo)
+        except Exception as exc:
+            log(f"could not fetch releases for {repo}: {exc}")
+            raw = []
+        built[repo], missing = build_entries(repo, repo_rows, raw, bundle_rows, log)
+        unresolved.extend(missing)
+
+    # Hand the entries back out in CSV order: each repo's platform entries come first in built[repo].
+    position = {repo: 0 for repo in built}
+
+    def take(rows):
         result = []
         for repo, _, _ in rows:
             result.append(built[repo][position[repo]])
@@ -148,8 +152,8 @@ def build_releases(
     doc = {
         "generated": now,
         "roc": {"nightly": nightly},
-        "platforms": entries(platform_rows),
-        "packages": entries(package_rows),
+        "platforms": take(platform_rows),
+        "packages": take(package_rows),
     }
     return doc, unresolved
 

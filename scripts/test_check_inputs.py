@@ -161,10 +161,22 @@ class CheckInputsTests(unittest.TestCase):
         self.assertIn("packages.csv:2:", errors[0])
         self.assertIn("a/b", errors[0])
 
+    def test_repo_variantless_in_both_files_rejected(self):
+        errors = self.check(platforms=PFS + "a/b,pf\n", packages=PKGS + "a/b,ab2\n")
+        self.assertEqual(len(errors), 1)
+        self.assertIn("packages.csv:3:", errors[0])
+        self.assertIn("a/b", errors[0])
+
+    def test_repo_variant_in_both_files_ok(self):
+        self.assertEqual(self.check(platforms=PFS + "a/b,pf,default\n", packages=PKGS + "a/b,tool,tool\n"), [])
+
     def test_duplicate_repo_variant_rejected(self):
         errors = self.check(packages="a/b,ab,x\na/b,ab2,x\n")
         self.assertEqual(len(errors), 1)
         self.assertIn("packages.csv:2:", errors[0])
+        errors = self.check(platforms=PFS + "a/b,pf,x\n", packages=PKGS + "a/b,ab,x\n")
+        self.assertEqual(len(errors), 1)
+        self.assertIn("packages.csv:3:", errors[0])
         self.assertEqual(self.check(packages="a/b,ab,x\na/b,ab2,y\n"), [])
 
     def test_bundles_row_shape_rejected(self):
@@ -183,6 +195,11 @@ class CheckInputsTests(unittest.TestCase):
         errors = self.check(packages=VARIANT_PKGS, bundles=f"a/b,1.0.0,{HASH},gui\n")
         self.assertEqual(len(errors), 1)
         self.assertIn('variant "gui"', errors[0])
+
+    def test_bundles_variant_declared_in_other_file_ok(self):
+        errors = self.check(platforms=PFS + "a/b,pf,default\n", packages=PKGS + "a/b,tool,tool\n",
+                            bundles=f"a/b,1.0.0,{HASH},tool\n")
+        self.assertEqual(errors, [])
 
     def test_bundles_duplicate_rejected(self):
         row = f"a/b,1.0.0,{HASH},default\n"

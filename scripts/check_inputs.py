@@ -63,14 +63,18 @@ def parse_requires(text: str) -> list[str]:
     return [r.strip() for r in first[len("# requires:"):].split(",")]
 
 
-def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str]) -> dict[str, list]:
-    """Validate a CSV list; return each repo's variants in CSV order ([None] without variants)."""
+def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str],
+               variants: dict[str, list], seen: dict[tuple[str, str | None], str]) -> set[str]:
+    """Validate a CSV list and return its repos.
+
+    `variants` (repo -> variants in order, [None] without variants) and `seen` ((repo, variant) -> where
+    first seen) are shared across both files, since a repo's variants may span them.
+    """
     path = root / name
     if not path.is_file():
         errors.append(f"{name}: file is missing")
-        return {}
-    variants: dict[str, list] = {}
-    seen: dict[tuple[str, str | None], int] = {}
+        return set()
+    repos: set[str] = set()
     aliases: dict[str, int] = {}
     for number, fields in _csv_rows_with_lines(path):
         if len(fields) not in (2, 3):
@@ -86,20 +90,21 @@ def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str]) -> d
             errors.append(f'{name}:{number}: variant "{variant}" does not match {ALIAS_RE.pattern}')
         if is_platform and alias != "pf":
             errors.append(f'{name}:{number}: platform alias "{alias}" must be "pf"')
+        repos.add(repo)
         key = (repo, variant)
         if key in seen:
             what = f'repo "{repo}"' if variant is None else f'repo "{repo}" variant "{variant}"'
-            errors.append(f"{name}:{number}: duplicate {what} (first on line {seen[key]})")
+            errors.append(f"{name}:{number}: duplicate {what} (first on {seen[key]})")
         elif repo in variants and (variant is None) != (variants[repo][0] is None):
             errors.append(f'{name}:{number}: repo "{repo}" appears both with and without a variant')
         else:
-            seen[key] = number
+            seen[key] = f"{name} line {number}"
             variants.setdefault(repo, []).append(variant)
         if not is_platform and alias in aliases:
             errors.append(f'{name}:{number}: duplicate alias "{alias}" (first on line {aliases[alias]})')
         else:
             aliases.setdefault(alias, number)
-    return variants
+    return repos
 
 
 def _check_bundles(root: Path, variants: dict[str, list], errors: list[str]) -> None:
@@ -150,11 +155,11 @@ def _check_template(root: Path, path: Path, packages: set[str], errors: list[str
 
 def check_inputs(root: Path) -> list[str]:
     errors: list[str] = []
-    package_variants = _check_csv(root, "packages.csv", False, errors)
-    platform_variants = _check_csv(root, "platforms.csv", True, errors)
-    package_repos = set(package_variants)
-    platform_repos = set(platform_variants)
-    _check_bundles(root, {**package_variants, **platform_variants}, errors)
+    variants: dict[str, list] = {}
+    seen: dict[tuple[str, str | None], str] = {}
+    platform_repos = _check_csv(root, "platforms.csv", True, errors, variants, seen)
+    package_repos = _check_csv(root, "packages.csv", False, errors, variants, seen)
+    _check_bundles(root, variants, errors)
 
     nightly_path = root / "verified-nightly"
     if not nightly_path.is_file():

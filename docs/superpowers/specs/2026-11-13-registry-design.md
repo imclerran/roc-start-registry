@@ -88,9 +88,14 @@ imclerran/roc-isodate,dt
   lukewilliamboswell/roc-graph-layout,mermaid,mermaid
   ```
 
-  The first row for a repository is its default variant. Variant names match
-  `^[a-z][a-z0-9_]*$`. A repository may not appear both with and without a
-  variant.
+  Variant names match `^[a-z][a-z0-9_]*$`. A repository's variants are
+  declared across both files: it may publish a platform and a package from
+  the same release (roc-signals ships its platform as a bare bundle and a
+  `signals-<hash>` tooling package), in which case it has a variant row in
+  each file. The default variant is the first row for the repository in
+  `platforms.csv`, or in `packages.csv` if it has no platform row. A
+  repository with any variant row may not also have a row without one, in
+  either file, and `(repository, variant)` is unique across both files.
 - CSV was chosen over JSON because the client never reads these files; they
   exist for humans, an admission PR is one added line with a clean diff, and
   there is no trailing-comma churn. If per-entry metadata is ever needed, the
@@ -109,7 +114,7 @@ lukewilliamboswell/roc-ray,0.12.2,9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3,w
 
 Rows are written by hand from the release notes, once, and never change
 because hashes are permanent. The repository must have variant rows and the
-variant must be one of them. This file is a bridge: upstream issues
+variant must be one of them, in either CSV. This file is a bridge: upstream issues
 (roc-ray #280, roc-signals #273) ask for prefixed filenames, after which new
 releases need no rows.
 
@@ -206,10 +211,12 @@ these rules, in order, or the release is unresolved:
 1. A repository without variant rows must ship exactly one bundle per
    release; that bundle is the entry's release. Several bundles make the
    release unresolved (the repository needs variant rows).
-2. A single bundle in a repository with variant rows belongs to the default
-   variant (roc-ray's releases before the Wayland build existed).
-3. With several bundles, a filename prefix names the variant, which must be
-   one of the declared rows.
+2. A single bare bundle in a repository with variant rows belongs to the
+   default variant (roc-ray's releases before the Wayland build existed).
+3. A filename prefix names the variant, which must be one of the declared
+   rows; an undeclared prefix makes the release unresolved, even for a
+   single bundle, because a prefix is explicit information that must not be
+   overridden.
 4. A bundle without a prefix is looked up in `bundles.csv` by
    `(repo, tag, hash)`.
 5. At most one bundle per release may be a bare hash with no row; it is the
