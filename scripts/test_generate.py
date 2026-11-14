@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 
 from scripts.check_inputs import read_csv_rows
@@ -8,6 +9,8 @@ from scripts.generate import (
     build_entry,
     build_releases,
     build_templates_index,
+    fetch_releases_github,
+    FetchError,
     pick_asset,
     semver_key,
     write_outputs,
@@ -209,6 +212,43 @@ class GenerateTests(unittest.TestCase):
         # template-only change also counts
         write(templates / "a/b/v0.2.0.roc", "{{dependencies}}\n")
         self.assertTrue(write_outputs(out, data, build_templates_index(templates), templates))
+
+    def test_fetch_paginates_via_link_header(self):
+        class Response:
+            def __init__(self, body, link=None):
+                self.body, self.link = body, link
+                self.headers = self
+
+            def get(self, name, default=None):
+                return self.link if name == "Link" else default
+
+            def read(self):
+                return json.dumps(self.body).encode()
+
+        next_url = "https://api.github.com/repositories/1/releases?per_page=100&page=2"
+        pages = [
+            Response([{"tag_name": "a"}], f'<{next_url}>; rel="next", <https://x/last>; rel="last"'),
+            Response([{"tag_name": "b"}]),
+        ]
+        seen = []
+
+        def opener(request):
+            seen.append(request)
+            return pages[len(seen) - 1]
+
+        result = fetch_releases_github("o/r", "tok", opener)
+        self.assertEqual([r["tag_name"] for r in result], ["a", "b"])
+        self.assertEqual(seen[0].full_url, "https://api.github.com/repos/o/r/releases?per_page=100")
+        self.assertEqual(seen[1].full_url, next_url)
+        self.assertEqual(seen[0].get_header("Authorization"), "Bearer tok")
+
+    def test_fetch_http_error_raises_fetch_error(self):
+        def opener(request):
+            raise urllib.error.HTTPError(request.full_url, 404, "Not Found", {}, None)
+
+        with self.assertRaises(FetchError) as ctx:
+            fetch_releases_github("o/missing", None, opener)
+        self.assertIn("o/missing", str(ctx.exception))
 
 
 if __name__ == "__main__":

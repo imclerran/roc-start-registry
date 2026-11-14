@@ -1,12 +1,17 @@
 """Pure functions that build releases.json and templates.json for the registry."""
+import argparse
 import json
+import os
 import re
 import shutil
 import sys
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
-from scripts.check_inputs import ASSET_RE, parse_requires
+from scripts.check_inputs import ASSET_RE, check_inputs, parse_requires, read_csv_rows
 
 SEMVER_RE = re.compile(r"^(\d+)\.(\d+)\.(\d+)(?:-(.+))?$")
 
@@ -132,3 +137,58 @@ def write_outputs(out_dir: Path, releases: dict, index: dict, templates_dir: Pat
 
     (out_dir / ".nojekyll").write_text("", encoding="utf-8")
     return changed
+
+
+class FetchError(Exception):
+    pass
+
+
+NEXT_LINK_RE = re.compile(r'<([^>]+)>\s*;\s*rel="next"')
+
+
+def fetch_releases_github(repo: str, token: str | None, opener=urllib.request.urlopen) -> list[dict]:
+    headers = {"Accept": "application/vnd.github+json", "User-Agent": "roc-start-registry"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    url = f"https://api.github.com/repos/{repo}/releases?per_page=100"
+    releases: list[dict] = []
+    try:
+        while url:
+            response = opener(urllib.request.Request(url, headers=headers))
+            releases.extend(json.loads(response.read()))
+            match = NEXT_LINK_RE.search(response.headers.get("Link") or "")
+            url = match.group(1) if match else None
+    except (urllib.error.HTTPError, urllib.error.URLError) as err:
+        raise FetchError(f"{repo}: {err}") from err
+    return releases
+
+
+def main(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(description="Generate the registry's releases.json and templates.json")
+    parser.add_argument("--out", required=True, type=Path)
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent)
+    parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN"))
+    parser.add_argument("--now", default=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+    args = parser.parse_args(argv)
+
+    errors = check_inputs(args.root)
+    if errors:
+        for error in errors:
+            sys.stderr.write(f"{error}\n")
+        return 1
+
+    nightly = (args.root / "verified-nightly").read_text(encoding="utf-8").rstrip("\n")
+    platform_rows = read_csv_rows(args.root / "platforms.csv")
+    package_rows = read_csv_rows(args.root / "packages.csv")
+    releases = build_releases(
+        platform_rows, package_rows, lambda repo: fetch_releases_github(repo, args.token), nightly, args.now
+    )
+    templates_dir = args.root / "templates"
+    index = build_templates_index(templates_dir)
+    changed = write_outputs(args.out, releases, index, templates_dir)
+    print("changed" if changed else "unchanged")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))
