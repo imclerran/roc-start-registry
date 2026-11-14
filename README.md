@@ -1,0 +1,1 @@
+This repository is the roc-start package registry: it holds the package and platform lists that are published as JSON to GitHub Pages for the rewritten roc-start tool. The full README will be added later.
