@@ -36,9 +36,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           title="Unresolved multi-bundle releases"
-          num=$(gh issue list --state open --json number,title --jq ".[] | select(.title == \"$title\") | .number" | head -n1)
+          num=$(gh issue list --state open --limit 200 --json number,title --jq ".[] | select(.title == \"$title\") | .number" | head -n1)
           if [ -s unresolved.txt ]; then
-            { printf 'These releases ship several bundles the registry cannot identify, so they are not listed yet. Add rows to `bundles.csv` or ask upstream to prefix the bundle filenames with the variant name.\n\n'; sed 's/^/- /' unresolved.txt; } > issue-body.md
+            { printf 'These releases ship several bundles the registry cannot identify, so they are not listed yet. Add rows to `bundles.csv` or ask upstream to prefix the bundle filenames with the variant name.\n\n'; sed 's/^/- `/; s/$/`/' unresolved.txt; } > issue-body.md
             if [ -n "$num" ]; then gh issue edit "$num" --body-file issue-body.md; else gh issue create --title "$title" --body-file issue-body.md; fi
           elif [ -n "$num" ]; then
             gh issue close "$num" --comment "Every multi-bundle release is now identified."

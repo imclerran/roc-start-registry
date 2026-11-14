@@ -194,19 +194,39 @@ repository's Pages URL. roc-start reads both files from there.
   per variant. Each entry carries `"variant"`: the variant name, or `null`
   for a repository without variants.
 - Bundle assets are those whose filename matches
-  `^(?:([a-z][a-z0-9_]*)-)?([1-9A-HJ-NP-Za-km-z]{44})\.tar\.zst$`: an
-  optional variant prefix, then the 44-base58-character hash the new
-  compiler's bundler produces. Legacy bundles are `.tar.br` with 43
+  `^(?:([a-z][a-z0-9_]*)-)?([1-9A-HJ-NP-Za-km-z]{43,44})\.tar\.zst$`: an
+  optional variant prefix, then the base58 hash the new compiler's bundler
+  produces, which is 44 characters for most 32-byte digests and 43 for the
+  roughly one in sixteen whose value is small enough. A `.tar.zst` asset
+  that does not match (an uppercase or hyphenated prefix, say) is logged as
+  a warning so a mis-named upstream bundle is visible. Legacy bundles are `.tar.br` with 43
   base64url characters and are dropped. The compiler accepts prefixed URLs;
   roc-graph-layout already publishes `layout-<hash>` and `mermaid-<hash>`.
 - A release with no bundle asset is omitted. A repository with no qualifying
   releases is still listed with an empty `releases` array so the client can
   tell "unknown package" from "no releases yet".
+- When the GitHub API call for one repository fails, its entries keep the
+  releases from the previous publish (read from the existing output) so a
+  transient error never empties an entry; a repository that has never been
+  published successfully gets an empty array. When every fetch fails, the
+  generator exits non-zero and writes nothing, so an API outage cannot
+  publish an empty registry or close the tracking issue.
 
 #### Bundle identification
 
-Nothing is guessed. Each bundle in a release is assigned to a variant by
-these rules, in order, or the release is unresolved:
+Only releases whose tag is a version are considered: an optional `v`, then
+two or three dot-separated numbers, then an optional prerelease suffix
+(`^v?\d+(?:\.\d+){1,2}(?:-[0-9A-Za-z.-]+)?$`). A repository may publish
+other artifact streams under their own tag scheme (roc-ray's `types-0.9.0`
+packages, roc-signals' `gui-0.1.0-rc.1`); those releases are skipped, never
+assigned to a variant, and not tracked as unresolved, because they are not
+releases of the listed entry at all. A skipped release that carries a bundle
+asset is logged as a warning; one without any bundle (`link-inputs-*`,
+`deps-*` tags) is skipped silently, so the log shows only what might have
+been a listable release.
+
+Nothing is guessed. Each bundle in a version-tagged release is assigned to
+a variant by these rules, in order, or the release is unresolved:
 
 1. A repository without variant rows must ship exactly one bundle per
    release; that bundle is the entry's release. Several bundles make the
@@ -254,7 +274,8 @@ list changes and closed when it is empty.
 }
 ```
 
-Entries are sorted by tag ascending (semver, leading `v` ignored).
+Entries are sorted by tag ascending (semver, leading `v` ignored,
+prerelease identifiers compared numerically where numeric).
 `requires` comes from the template's `# requires:` line and is empty when
 the line is absent. The client resolves a template to
 `<pages-url>/templates/<owner>/<name>/<tag>.roc`, so `templates/` is also
@@ -272,7 +293,8 @@ Triggers: nightly cron and `workflow_dispatch`.
    pagination, filters assets by the filename rule, assigns bundles to
    variants per Bundle identification, and writes `releases.json`,
    `templates.json`, and a copy of `templates/` into an output directory,
-   plus the list of unresolved releases to a file outside it. A repository that returns 404 or any other error is
+   plus the list of unresolved releases to a file outside it. If every
+   fetch failed the step fails and the later steps do not run. A repository that returns 404 or any other error is
    recorded as a warning in the job log and listed with an empty `releases`
    array; it never fails the job.
 3. Compare the output directory with the current `gh-pages` content. Commit
@@ -282,6 +304,10 @@ Triggers: nightly cron and `workflow_dispatch`.
    issue from the unresolved list (requires `issues: write`).
 
 No Roc toolchain is installed. No package is downloaded, built, or checked.
+
+GitHub disables scheduled workflows on public repositories after 60 days
+without a commit to the default branch and emails a warning first; a quiet
+registry needs the owner to re-enable it or to commit occasionally.
 
 ### `pr-checks.yml`
 
@@ -293,15 +319,20 @@ Runs `scripts/check_inputs.py` on every pull request and fails on any of:
 - A duplicate `(repository, variant)` or duplicate alias within a file, or a
   repository that appears both with and without a variant.
 - A `bundles.csv` line that is not `repo,tag,hash,variant` with a
-  44-base58-character hash, a repository that has variant rows, and a
+  43- or 44-character base58 hash, a repository that has variant rows, and a
   variant declared for it; or a duplicate `(repo, tag, hash)`.
 - A template that does not contain `{{dependencies}}` exactly once.
 - A template containing any `{{...}}` token other than `{{dependencies}}`
   or `{{pf}}` (catches typos such as `{{platform}}`).
 - A template path whose `<owner>/<name>` is not a row in `platforms.csv`.
 - A template filename that is not a valid semver tag with optional `v`.
-- A `# requires:` line that names a repository not in `packages.csv`, or
-  that is not the first line of the template.
+- A `# requires:` line that names a repository not in `packages.csv`, one
+  with more than one package row (the registry does not yet express which
+  variant is required), or that is not the first line of the template.
+- Two templates for one platform whose tags name the same version with and
+  without a leading `v`.
+- A package alias of `pf`, which would collide with the platform alias in
+  every generated header.
 
 ### `test_generate.py`
 

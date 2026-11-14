@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -32,7 +34,10 @@ H = {
     "I": "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",  # "I" is not in base58
     "J": "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
     "K": "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+    "L": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",  # types-0.9.0, a non-version tag
 }
+HASH_43 = "3Jq8sYkVbCwZ5rTnPd2HfLx9MgEu7aRo4ZiKe6WtNhB"  # basic-cli 0.27.0
+ROOT = Path(__file__).resolve().parent.parent
 VARIANTS = ["default", "wayland"]
 RAY_ROWS = [("pf", "default"), ("pf", "wayland")]
 
@@ -88,7 +93,7 @@ class GenerateTests(unittest.TestCase):
         self.assertEqual((m.group("variant"), m.group("hash")), ("wayland", H["A"]))
         m = ASSET_RE.match(f"{H['A']}.tar.zst")
         self.assertEqual((m.group("variant"), m.group("hash")), (None, H["A"]))
-        self.assertIsNone(ASSET_RE.match(f"x-{H['A'][:43]}.tar.zst"))
+        self.assertIsNone(ASSET_RE.match(f"x-{H['A'][:42]}.tar.zst"))
 
     def identify(self, tag, variants, rows=None):
         logged = []
@@ -164,6 +169,47 @@ class GenerateTests(unittest.TestCase):
         self.assertIsNone(result)
         self.assertEqual(logged, ["x/ray 0.8.0: unresolved — two bundles for variant 'default'"])
 
+    def test_pick_43_char_bundle_listed(self):
+        [entry], _ = generate.build_entries("roc-lang/basic-cli", [("pf", None)], fixture(), {}, log=quiet)
+        [release] = [r for r in entry["releases"] if r["tag"] == "0.27.0"]
+        self.assertTrue(release["url"].endswith(f"/0.27.0/{HASH_43}.tar.zst"))
+
+    def test_non_matching_zst_asset_warns(self):
+        release = {"tag_name": "1.0.0", "published_at": "2026-01-01T00:00:00Z", "assets": [
+            {"name": f"{H['A']}.tar.zst", "browser_download_url": "u"},
+            {"name": f"Wayland-{H['B']}.tar.zst", "browser_download_url": "w"},
+            {"name": "docs.tar.gz", "browser_download_url": "d"},
+        ]}
+        logged = []
+        [entry], unresolved = generate.build_entries("a/b", [("b", None)], [release], {}, log=logged.append)
+        self.assertEqual(logged, [f"a/b 1.0.0: ignoring asset Wayland-{H['B']}.tar.zst: not a bundle filename"])
+        self.assertEqual([r["url"] for r in entry["releases"]], ["u"])
+        self.assertEqual(unresolved, [])
+
+    def test_build_entries_skips_non_version_tags(self):
+        logged = []
+        entries, unresolved = generate.build_entries("x/ray", RAY_ROWS, multi(), {}, log=logged.append)
+        self.assertEqual([r["tag"] for r in entries[0]["releases"]], ["1.3.0", "1.1.0", "1.0.0"])
+        self.assertNotIn("types-0.9.0", [r["tag"] for e in entries for r in e["releases"]])
+        self.assertIn("x/ray types-0.9.0: skipped, tag is not a version", logged)
+        self.assertNotIn("types-0.9.0", [u["tag"] for u in unresolved])
+        # A non-version release with no bundle asset at all is skipped silently.
+        self.assertFalse([line for line in logged if "link-inputs" in line])
+        self.assertNotIn("link-inputs-sha256-0123abcd", [u["tag"] for u in unresolved])
+
+    def test_tracking_list_ignores_skipped_tags(self):
+        gui = {"tag_name": "gui-0.1.0-rc.1", "published_at": "2026-05-01T00:00:00Z", "assets": [
+            {"name": f"{H['C']}.tar.zst", "browser_download_url": "c"},
+            {"name": f"{H['D']}.tar.zst", "browser_download_url": "d"},
+        ]}
+        releases = [gui] + [r for r in multi() if r["tag_name"] != "1.3.0"]
+        entries, unresolved = generate.build_entries("x/ray", RAY_ROWS, releases, {}, log=quiet)
+        self.assertEqual([u["tag"] for u in unresolved], ["1.2.0", "0.9.0", "0.8.0"])
+        self.assertEqual(
+            generate.tracking_list(unresolved, entries),
+            ["x/ray 1.2.0: 2 bundles without prefix or bundles.csv row"],
+        )
+
     def test_build_entries_one_entry_per_row_with_variant(self):
         entries, _ = generate.build_entries("x/ray", RAY_ROWS, multi(), {}, log=quiet)
         self.assertEqual(len(entries), 2)
@@ -188,13 +234,14 @@ class GenerateTests(unittest.TestCase):
                  "reason": "two bundles for variant 'default'"},
             ],
         )
-        self.assertEqual(len(logged), 3)
+        self.assertEqual(len(logged), 4)
+        self.assertIn("x/ray types-0.9.0: skipped, tag is not a version", logged)
 
     def test_build_entries_no_variants_variant_is_null(self):
         entries, unresolved = generate.build_entries("roc-lang/basic-cli", [("pf", None)], fixture(), {}, log=quiet)
         self.assertEqual(len(entries), 1)
         self.assertIsNone(entries[0]["variant"])
-        self.assertEqual(len(entries[0]["releases"]), 3)
+        self.assertEqual(len(entries[0]["releases"]), 4)
         self.assertEqual(unresolved, [])
 
     def test_tracking_list_only_newer_than_newest_resolved(self):
@@ -228,7 +275,7 @@ class GenerateTests(unittest.TestCase):
             calls.append(repo)
             return multi() if repo == "x/ray" else fixture()
 
-        doc, unresolved = build_releases(
+        doc, unresolved, failed = build_releases(
             [("x/ray", "pf", "default"), ("x/ray", "pf", "wayland")],
             [("roc-lang/basic-cli", "cli", None)],
             fetch,
@@ -245,10 +292,11 @@ class GenerateTests(unittest.TestCase):
         self.assertIsNone(doc["packages"][0]["variant"])
         self.assertIsInstance(unresolved, list)
         self.assertEqual([u["tag"] for u in unresolved], ["1.2.0", "0.9.0", "0.8.0"])
+        self.assertEqual(failed, [])
 
     def test_build_entry_skips_drafts_keeps_prereleases(self):
         [entry], _ = generate.build_entries("roc-lang/basic-cli", [("cli", None)], fixture(), {}, log=quiet)
-        self.assertEqual([r["tag"] for r in entry["releases"]], ["0.28.1", "0.28.0", "0.26.0-rc3"])
+        self.assertEqual([r["tag"] for r in entry["releases"]], ["0.28.1", "0.28.0", "0.27.0", "0.26.0-rc3"])
 
     def test_build_entry_newest_first_and_shape(self):
         shuffled = list(reversed(fixture()))
@@ -270,8 +318,14 @@ class GenerateTests(unittest.TestCase):
         tags = ["v1.0.0", "0.9.0", "1.0.0-rc1"]
         self.assertEqual(sorted(tags, key=semver_key), ["0.9.0", "1.0.0-rc1", "v1.0.0"])
 
+    def test_semver_key_prerelease_numeric_identifiers(self):
+        self.assertLess(semver_key("1.0.0-rc.2"), semver_key("1.0.0-rc.10"))
+        tags = ["1.0.0", "1.0.0-rc.10", "1.0.0-beta", "1.0.0-rc.2", "1.0.0-1", "v0.7", "0.7.1", "1.0.0-rc"]
+        self.assertEqual(sorted(tags, key=semver_key),
+                         ["v0.7", "0.7.1", "1.0.0-1", "1.0.0-beta", "1.0.0-rc", "1.0.0-rc.2", "1.0.0-rc.10", "1.0.0"])
+
     def test_build_releases_shape_and_nightly(self):
-        result, _ = build_releases(
+        result, _, _ = build_releases(
             [("roc-lang/basic-cli", "pf", None)],
             [("a/b", "b", None)],
             lambda repo: fixture(),
@@ -286,30 +340,95 @@ class GenerateTests(unittest.TestCase):
         self.assertEqual(result["platforms"][0]["repo"], "roc-lang/basic-cli")
         self.assertEqual(result["packages"][0]["alias"], "b")
 
-    def test_build_releases_fetch_failure_gives_empty_entry(self):
+    def failing_build(self, previous):
         def fetch(repo):
             if repo == "bad/repo":
                 raise RuntimeError("boom")
             return fixture()
 
         logged = []
-        result, _ = build_releases(
+        result = build_releases(
             [("roc-lang/basic-cli", "pf", None)],
             [("bad/repo", "bad", "one"), ("bad/repo", "bad2", "two"), ("a/b", "b", None)],
             fetch,
             "nightly-2026-11-10-abcdef0",
             "now",
             {},
+            previous,
             log=logged.append,
         )
-        self.assertEqual(len(logged), 1)
-        self.assertIn("bad/repo", logged[0])
+        return result, [line for line in logged if line.startswith("bad/repo")]
+
+    def test_build_releases_fetch_failure_without_previous_is_empty(self):
+        (result, _, failed), logged = self.failing_build(None)
+        self.assertEqual(logged, ["bad/repo: fetch failed (boom); no previous releases"])
+        self.assertEqual(failed, ["bad/repo"])
         self.assertEqual(
             [(e["repo"], e["variant"], e["releases"]) for e in result["packages"][:2]],
             [("bad/repo", "one", []), ("bad/repo", "two", [])],
         )
-        self.assertEqual(len(result["packages"][2]["releases"]), 3)
-        self.assertEqual(len(result["platforms"][0]["releases"]), 3)
+        self.assertEqual(len(result["packages"][2]["releases"]), 4)
+        self.assertEqual(len(result["platforms"][0]["releases"]), 4)
+
+    def test_build_releases_fetch_failure_carries_over_previous(self):
+        kept = [{"tag": "0.1.0", "url": "u-one", "published": "2026-01-01T00:00:00Z"}]
+        previous = {
+            "generated": "earlier", "roc": {"nightly": "n"},
+            "platforms": [{"repo": "bad/repo", "alias": "pf", "variant": "two", "releases": [{"tag": "x"}]}],
+            "packages": [
+                {"repo": "bad/repo", "alias": "bad", "variant": "one", "releases": kept},
+                {"repo": "a/b", "alias": "b", "variant": None, "releases": [{"tag": "stale"}]},
+            ],
+        }
+        (result, unresolved, failed), logged = self.failing_build(previous)
+        self.assertEqual(logged, ["bad/repo: fetch failed (boom); keeping previous releases"])
+        self.assertEqual(failed, ["bad/repo"])
+        # Each (repo, variant) takes its own previous releases; "two" was a platform entry before, so it
+        # still matches by (repo, variant), and a repo that fetched fine ignores the previous file.
+        self.assertEqual(
+            [(e["variant"], e["releases"]) for e in result["packages"]],
+            [("one", kept), ("two", [{"tag": "x"}]), (None, result["packages"][2]["releases"])],
+        )
+        self.assertEqual(len(result["packages"][2]["releases"]), 4)
+        self.assertEqual(unresolved, [])
+
+    def test_main_all_fetches_fail_writes_nothing_and_returns_2(self):
+        out, unresolved = self.tmp / "out", self.tmp / "unresolved.txt"
+        calls = []
+
+        def fetch(repo):
+            calls.append(repo)
+            raise RuntimeError("outage")
+
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err), contextlib.redirect_stdout(io.StringIO()):
+            code = generate.main(["--out", str(out), "--root", str(ROOT), "--unresolved", str(unresolved),
+                                  "--token", "x"], fetch=fetch)
+        self.assertEqual(code, 2)
+        self.assertFalse(out.exists())
+        self.assertFalse(unresolved.exists())
+        self.assertGreater(len(calls), 1)
+        self.assertIn("error: every fetch failed; nothing written", err.getvalue())
+
+    def test_main_partial_failure_keeps_previous_from_out_dir(self):
+        out = self.tmp / "out"
+        kept = [{"tag": "0.28.0", "url": "u", "published": "2026-11-11T06:26:08Z"}]
+        write(out / "releases.json", json.dumps(
+            {"generated": "g", "roc": {"nightly": "n"},
+             "platforms": [{"repo": "roc-lang/basic-cli", "alias": "pf", "variant": None, "releases": kept}],
+             "packages": []}))
+
+        def fetch(repo):
+            if repo == "roc-lang/basic-cli":
+                raise RuntimeError("boom")
+            return []
+
+        with contextlib.redirect_stderr(io.StringIO()), contextlib.redirect_stdout(io.StringIO()):
+            code = generate.main(["--out", str(out), "--root", str(ROOT), "--token", "x"], fetch=fetch)
+        self.assertEqual(code, 0)
+        doc = json.loads((out / "releases.json").read_text())
+        [cli] = [e for e in doc["platforms"] if e["repo"] == "roc-lang/basic-cli"]
+        self.assertEqual(cli["releases"], kept)
 
     def test_build_releases_repo_in_both_files(self):
         release = {
@@ -325,7 +444,7 @@ class GenerateTests(unittest.TestCase):
             calls.append(repo)
             return [release]
 
-        doc, unresolved = build_releases(
+        doc, unresolved, _ = build_releases(
             [("a/b", "pf", "default")], [("a/b", "tool", "tool")], fetch, "n", "now", {}, log=quiet
         )
         self.assertEqual(calls, ["a/b"])
@@ -440,18 +559,19 @@ class GenerateTests(unittest.TestCase):
         ]
         seen = []
 
-        def opener(request):
-            seen.append(request)
+        def opener(request, timeout=None):
+            seen.append((request, timeout))
             return pages[len(seen) - 1]
 
         result = fetch_releases_github("o/r", "tok", opener)
         self.assertEqual([r["tag_name"] for r in result], ["a", "b"])
-        self.assertEqual(seen[0].full_url, "https://api.github.com/repos/o/r/releases?per_page=100")
-        self.assertEqual(seen[1].full_url, next_url)
-        self.assertEqual(seen[0].get_header("Authorization"), "Bearer tok")
+        self.assertEqual(seen[0][0].full_url, "https://api.github.com/repos/o/r/releases?per_page=100")
+        self.assertEqual(seen[1][0].full_url, next_url)
+        self.assertEqual(seen[0][0].get_header("Authorization"), "Bearer tok")
+        self.assertEqual([timeout for _, timeout in seen], [30, 30])
 
     def test_fetch_http_error_raises_fetch_error(self):
-        def opener(request):
+        def opener(request, timeout=None):
             raise urllib.error.HTTPError(request.full_url, 404, "Not Found", {}, None)
 
         with self.assertRaises(FetchError) as ctx:

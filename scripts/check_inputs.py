@@ -1,13 +1,16 @@
 """Validate the registry inputs: CSV lists, templates, and verified-nightly."""
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
-ASSET_RE = re.compile(r"^(?:(?P<variant>[a-z][a-z0-9_]*)-)?(?P<hash>[1-9A-HJ-NP-Za-km-z]{44})\.tar\.zst$")
-HASH_RE = re.compile(r"^[1-9A-HJ-NP-Za-km-z]{44}$")
+ASSET_RE = re.compile(r"^(?:(?P<variant>[a-z][a-z0-9_]*)-)?(?P<hash>[1-9A-HJ-NP-Za-km-z]{43,44})\.tar\.zst$")
+HASH_RE = re.compile(r"^[1-9A-HJ-NP-Za-km-z]{43,44}$")
 ALIAS_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 REPO_RE = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?/[A-Za-z0-9._-]+$")
 TAG_RE = re.compile(r"^v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$")
+# A release tag that names a version; other tags are separate artifact streams (roc-ray's `types-0.9.0`).
+RELEASE_TAG_RE = re.compile(r"^v?\d+(?:\.\d+){1,2}(?:-[0-9A-Za-z.-]+)?$")
 NIGHTLY_RE = re.compile(r"^nightly-\d{4}-\d{2}-\d{2}-[0-9a-f]{7}$")
 PLACEHOLDER_RE = re.compile(r"\{\{[^}]*\}\}")
 REQUIRES_RE = re.compile(
@@ -64,8 +67,8 @@ def parse_requires(text: str) -> list[str]:
 
 
 def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str],
-               variants: dict[str, list], seen: dict[tuple[str, str | None], str]) -> set[str]:
-    """Validate a CSV list and return its repos.
+               variants: dict[str, list], seen: dict[tuple[str, str | None], str]) -> Counter:
+    """Validate a CSV list and return its repos with their row counts.
 
     `variants` (repo -> variants in order, [None] without variants) and `seen` ((repo, variant) -> where
     first seen) are shared across both files, since a repo's variants may span them.
@@ -73,8 +76,8 @@ def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str],
     path = root / name
     if not path.is_file():
         errors.append(f"{name}: file is missing")
-        return set()
-    repos: set[str] = set()
+        return Counter()
+    repos: Counter = Counter()
     aliases: dict[str, int] = {}
     for number, fields in _csv_rows_with_lines(path):
         if len(fields) not in (2, 3):
@@ -90,7 +93,9 @@ def _check_csv(root: Path, name: str, is_platform: bool, errors: list[str],
             errors.append(f'{name}:{number}: variant "{variant}" does not match {ALIAS_RE.pattern}')
         if is_platform and alias != "pf":
             errors.append(f'{name}:{number}: platform alias "{alias}" must be "pf"')
-        repos.add(repo)
+        if not is_platform and alias == "pf":
+            errors.append(f'{name}:{number}: package alias "pf" is reserved for the platform')
+        repos[repo] += 1
         key = (repo, variant)
         if key in seen:
             what = f'repo "{repo}"' if variant is None else f'repo "{repo}" variant "{variant}"'
@@ -119,7 +124,7 @@ def _check_bundles(root: Path, variants: dict[str, list], errors: list[str]) -> 
             continue
         repo, tag, hash_, variant = fields
         if not HASH_RE.match(hash_):
-            errors.append(f'{where} hash "{hash_}" is not 44 base58 characters')
+            errors.append(f'{where} hash "{hash_}" is not 43 or 44 base58 characters')
         declared = [v for v in variants.get(repo, []) if v is not None]
         if not declared:
             errors.append(f'{where} repo "{repo}" has no variant rows in packages.csv or platforms.csv')
@@ -132,7 +137,7 @@ def _check_bundles(root: Path, variants: dict[str, list], errors: list[str]) -> 
             seen[key] = number
 
 
-def _check_template(root: Path, path: Path, packages: set[str], errors: list[str]) -> None:
+def _check_template(root: Path, path: Path, packages: Counter, errors: list[str]) -> None:
     rel = path.relative_to(root).as_posix()
     text = path.read_text(encoding="utf-8")
     tokens = PLACEHOLDER_RE.findall(text)
@@ -148,6 +153,9 @@ def _check_template(root: Path, path: Path, packages: set[str], errors: list[str
         for repo in parse_requires(text):
             if repo not in packages:
                 errors.append(f'{rel}:1: required package "{repo}" is not in packages.csv')
+            elif packages[repo] > 1:
+                errors.append(f"{rel}:1: requires {repo} which has several package variants; "
+                              "the registry cannot express which")
     for number, line in enumerate(lines[1:], start=2):
         if line.startswith(REQUIRES_PREFIX):
             errors.append(f"{rel}:{number}: requires line must be the first line")
@@ -176,6 +184,7 @@ def check_inputs(root: Path) -> list[str]:
     if not generic.is_file():
         errors.append("templates/generic.roc: file is missing")
     if templates.is_dir():
+        versions: dict[tuple[str, str], list[str]] = {}
         for path in sorted(templates.rglob("*")):
             if not path.is_file():
                 continue
@@ -190,9 +199,16 @@ def check_inputs(root: Path) -> list[str]:
                     errors.append(f'{rel}: platform "{repo}" is not in platforms.csv')
                 if not TAG_RE.match(tag):
                     errors.append(f'{rel}: tag "{tag}" does not match {TAG_RE.pattern}')
+                else:
+                    version = tag[1:] if tag.startswith("v") else tag
+                    versions.setdefault((repo, version), []).append(tag)
                 _check_template(root, path, package_repos, errors)
             else:
                 errors.append(f"{rel}: unexpected file in templates/")
+        for (repo, _), tags in versions.items():
+            if len(tags) > 1:
+                named = " and ".join(f'"{t}"' for t in sorted(tags))
+                errors.append(f"templates/{repo}: tags {named} name the same version")
     return errors
 
 

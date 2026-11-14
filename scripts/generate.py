@@ -5,29 +5,39 @@ import os
 import re
 import shutil
 import sys
-import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
-from scripts.check_inputs import ASSET_RE, check_inputs, parse_requires, read_bundle_rows, read_csv_rows
+from scripts.check_inputs import (
+    ASSET_RE,
+    RELEASE_TAG_RE,
+    check_inputs,
+    parse_requires,
+    read_bundle_rows,
+    read_csv_rows,
+)
 
-SEMVER_RE = re.compile(r"^(\d+)\.(\d+)\.(\d+)(?:-(.+))?$")
+SEMVER_RE = re.compile(r"^(\d+)\.(\d+)(?:\.(\d+))?(?:-(.+))?$")
 
 
 def print_warning(msg: str) -> None:
     sys.stderr.write(f"warning: {msg}\n")
 
 
-def _assign(repo: str, release: dict, variants: list[str], bundle_rows: dict) -> tuple[dict | None, str]:
+def _assign(repo: str, release: dict, variants: list[str], bundle_rows: dict,
+            log=print_warning) -> tuple[dict | None, str]:
     """Apply the bundle identification rules; return (assignment, "") or (None, reason)."""
     tag = release.get("tag_name")
     bundles = []
     for asset in release.get("assets", []):
-        m = ASSET_RE.match(asset.get("name", ""))
+        name = asset.get("name", "")
+        m = ASSET_RE.match(name)
         if m:
             bundles.append((m.group("variant"), m.group("hash"), asset))
+        elif name.endswith(".tar.zst"):
+            log(f"{repo} {tag}: ignoring asset {name}: not a bundle filename")
     if not bundles:
         return {}, ""
     if not variants:  # rule 1
@@ -64,7 +74,7 @@ def _unresolved_message(repo: str, tag: str, reason: str) -> str:
 def identify_bundles(repo: str, release: dict, variants: list[str], bundle_rows: dict,
                      log=print_warning) -> dict[str | None, dict] | None:
     """Map each bundle in the release to its variant (None without variants), or None if unresolved."""
-    assigned, reason = _assign(repo, release, variants, bundle_rows)
+    assigned, reason = _assign(repo, release, variants, bundle_rows, log)
     if assigned is None:
         log(_unresolved_message(repo, release.get("tag_name"), reason))
     return assigned
@@ -80,7 +90,12 @@ def build_entries(repo: str, rows: list[tuple[str, str | None]], releases: list[
         if release.get("draft"):
             continue
         tag, published = release["tag_name"], release.get("published_at")
-        assigned, reason = _assign(repo, release, variants, bundle_rows)
+        if not RELEASE_TAG_RE.match(tag):
+            # Another artifact stream: say so only if it might have been a listable release.
+            if any(asset.get("name", "").endswith(".tar.zst") for asset in release.get("assets", [])):
+                log(f"{repo} {tag}: skipped, tag is not a version")
+            continue
+        assigned, reason = _assign(repo, release, variants, bundle_rows, log)
         if assigned is None:
             log(_unresolved_message(repo, tag, reason))
             unresolved.append({"repo": repo, "tag": tag, "published": published, "reason": reason})
@@ -110,20 +125,45 @@ def tracking_list(unresolved: list[dict], entries: list[dict]) -> list[str]:
     return [line for _, _, line in sorted(lines)]
 
 
+def _prerelease_identifier(text: str) -> tuple:
+    """Semver 11.4: numeric identifiers compare numerically and sort before alphanumeric ones."""
+    return (0, int(text), "") if text.isdigit() else (1, 0, text)
+
+
 def semver_key(tag: str) -> tuple:
     text = tag[1:] if tag.startswith("v") else tag
     m = SEMVER_RE.match(text)
     if not m:
-        return (0, 0, 0, 0, tag)
-    pre = m.group(4)
-    return (int(m.group(1)), int(m.group(2)), int(m.group(3)), 0 if pre else 1, pre or "")
+        return (-1, 0, 0, 0, ((1, 0, tag),))
+    major, minor, patch, pre = m.groups()
+    identifiers = tuple(_prerelease_identifier(part) for part in pre.split(".")) if pre else ()
+    return (int(major), int(minor), int(patch or 0), 0 if pre else 1, identifiers)
+
+
+def _previous_releases(previous: dict | None) -> dict[tuple[str, str | None], list[dict]]:
+    """Map (repo, variant) to the releases of the previous publish's entry."""
+    if not isinstance(previous, dict):
+        return {}
+    found = {}
+    for key in ("platforms", "packages"):
+        for entry in previous.get(key) or []:
+            if isinstance(entry, dict) and isinstance(entry.get("releases"), list):
+                found.setdefault((entry.get("repo"), entry.get("variant")), entry["releases"])
+    return found
 
 
 def build_releases(
     platform_rows, package_rows, fetch: Callable[[str], list[dict]], nightly: str, now: str, bundle_rows: dict,
-    log=print_warning,
-) -> tuple[dict, list[dict]]:
+    previous: dict | None = None, log=print_warning,
+) -> tuple[dict, list[dict], list[str]]:
+    """Return the releases.json document, the unresolved releases, and the repos whose fetch failed.
+
+    A repo whose fetch fails keeps each entry's releases from `previous` (the last published
+    releases.json) by (repo, variant), or gets [] when it has none.
+    """
     unresolved: list[dict] = []
+    failed_repos: list[str] = []
+    kept = _previous_releases(previous)
 
     # A repo's variants may span both files: group its rows platform rows first, so rows[0] is the default.
     by_repo: dict[str, list[tuple[str, str | None]]] = {}
@@ -134,8 +174,14 @@ def build_releases(
         try:
             raw = fetch(repo)
         except Exception as exc:
-            log(f"could not fetch releases for {repo}: {exc}")
-            raw = []
+            failed_repos.append(repo)
+            found = any((repo, variant) in kept for _, variant in repo_rows)
+            log(f"{repo}: fetch failed ({exc}); " + ("keeping previous releases" if found else "no previous releases"))
+            built[repo] = [
+                {"repo": repo, "alias": alias, "variant": variant, "releases": kept.get((repo, variant), [])}
+                for alias, variant in repo_rows
+            ]
+            continue
         built[repo], missing = build_entries(repo, repo_rows, raw, bundle_rows, log)
         unresolved.extend(missing)
 
@@ -155,7 +201,7 @@ def build_releases(
         "platforms": take(platform_rows),
         "packages": take(package_rows),
     }
-    return doc, unresolved
+    return doc, unresolved, failed_repos
 
 
 def build_templates_index(templates_dir: Path) -> dict:
@@ -232,16 +278,24 @@ def fetch_releases_github(repo: str, token: str | None, opener=urllib.request.ur
     releases: list[dict] = []
     try:
         while url:
-            response = opener(urllib.request.Request(url, headers=headers))
+            response = opener(urllib.request.Request(url, headers=headers), timeout=30)
             releases.extend(json.loads(response.read()))
             match = NEXT_LINK_RE.search(response.headers.get("Link") or "")
             url = match.group(1) if match else None
-    except (urllib.error.HTTPError, urllib.error.URLError) as err:
+    except OSError as err:  # HTTPError, URLError, and timeouts while reading
         raise FetchError(f"{repo}: {err}") from err
     return releases
 
 
-def main(argv: list[str]) -> int:
+def _read_previous(path: Path) -> dict | None:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def main(argv: list[str], fetch: Callable[[str], list[dict]] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Generate the registry's releases.json and templates.json")
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent)
@@ -260,10 +314,17 @@ def main(argv: list[str]) -> int:
     platform_rows = read_csv_rows(args.root / "platforms.csv")
     package_rows = read_csv_rows(args.root / "packages.csv")
     bundle_rows = read_bundle_rows(args.root / "bundles.csv")
-    releases, unresolved = build_releases(
-        platform_rows, package_rows, lambda repo: fetch_releases_github(repo, args.token), nightly, args.now,
-        bundle_rows,
+    if fetch is None:
+        def fetch(repo: str) -> list[dict]:
+            return fetch_releases_github(repo, args.token)
+    previous = _read_previous(args.out / "releases.json")
+    releases, unresolved, failed_repos = build_releases(
+        platform_rows, package_rows, fetch, nightly, args.now, bundle_rows, previous,
     )
+    repos = {repo for repo, _, _ in platform_rows + package_rows}
+    if failed_repos and len(failed_repos) == len(repos):
+        sys.stderr.write("error: every fetch failed; nothing written\n")
+        return 2
     if args.unresolved is not None:
         lines = tracking_list(unresolved, releases["platforms"] + releases["packages"])
         args.unresolved.write_text("".join(f"{line}\n" for line in lines), encoding="utf-8")

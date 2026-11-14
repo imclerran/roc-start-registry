@@ -210,6 +210,51 @@ class CheckInputsTests(unittest.TestCase):
     def test_bundles_missing_file_ok(self):
         self.assertEqual(self.check(packages=VARIANT_PKGS), [])
 
+    def test_asset_re_accepts_43_char_hash(self):
+        hash43 = HASH[:43]
+        m = ci.ASSET_RE.match(f"{hash43}.tar.zst")
+        self.assertEqual((m.group("variant"), m.group("hash")), (None, hash43))
+        self.assertTrue(ci.HASH_RE.match(hash43))
+        self.assertIsNone(ci.ASSET_RE.match(f"{HASH[:42]}.tar.zst"))
+        self.assertIsNone(ci.ASSET_RE.match(f"{HASH}A.tar.zst"))
+
+    def test_bundles_43_char_hash_ok(self):
+        self.assertEqual(self.check(packages=VARIANT_PKGS, bundles=f"a/b,1.0.0,{HASH[:43]},default\n"), [])
+
+    def test_release_tag_re(self):
+        for tag in ("0.7", "v1.2.3", "1.0.0-rc.1", "0.26.0-rc3"):
+            self.assertTrue(ci.RELEASE_TAG_RE.match(tag), tag)
+        for tag in ("types-0.9.0", "gui-0.1.0-rc.1", "linker-inputs-548c70b9", "1", "1.2.3.4", "nightly"):
+            self.assertIsNone(ci.RELEASE_TAG_RE.match(tag), tag)
+
+    def test_template_duplicate_version_v_prefix_rejected(self):
+        errors = self.check(templates={"generic.roc": GENERIC, "roc-lang/basic-cli/0.26.0.roc": PF_TEMPLATE,
+                                       "roc-lang/basic-cli/v0.26.0.roc": PF_TEMPLATE})
+        self.assertEqual(len(errors), 1)
+        self.assertTrue(errors[0].startswith("templates/roc-lang/basic-cli: "), errors[0])
+        self.assertIn("0.26.0", errors[0])
+        self.assertIn("v0.26.0", errors[0])
+        ok = self.check(templates={"generic.roc": GENERIC, "roc-lang/basic-cli/0.26.0.roc": PF_TEMPLATE,
+                                   "roc-lang/basic-cli/v0.27.0.roc": PF_TEMPLATE})
+        self.assertEqual(ok, [])
+
+    def test_package_alias_pf_rejected(self):
+        errors = self.check(packages=PKGS + "a/b,pf\n")
+        self.assertEqual(len(errors), 1)
+        self.assertIn("packages.csv:3:", errors[0])
+        self.assertIn('"pf"', errors[0])
+
+    def test_requires_repo_with_variants_rejected(self):
+        errors = self.check(packages=VARIANT_PKGS, templates=self.tpl(
+            "roc-lang/basic-cli/0.26.0.roc", "# requires: a/b\n" + PF_TEMPLATE))
+        self.assertEqual(errors, [
+            "templates/roc-lang/basic-cli/0.26.0.roc:1: requires a/b which has several package variants; "
+            "the registry cannot express which"])
+        # A repo with one package row and other rows in platforms.csv is still expressible.
+        errors = self.check(platforms=PFS + "a/b,pf,default\n", packages=PKGS + "a/b,tool,tool\n",
+                            templates=self.tpl("roc-lang/basic-cli/0.26.0.roc", "# requires: a/b\n" + PF_TEMPLATE))
+        self.assertEqual(errors, [])
+
     def test_read_csv_rows_returns_three_tuples(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "p.csv"
