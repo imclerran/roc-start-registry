@@ -114,6 +114,14 @@ Layout and selection:
   `v` ignored.
 - `templates/generic.roc` is used when a platform has no template at all.
   It is a minimal `app [main!] {{dependencies}}` with an empty `main!`.
+- A stub that needs a package besides the platform (basic-webserver apps
+  need `roc-lang/http` for `Response`) declares it on the template's first
+  line as a Roc comment: `# requires: roc-lang/http` (comma-separated when
+  several). Each named repository must be a row in `packages.csv`, so its
+  release URL and alias are known; roc-start adds those packages to the
+  generated header with their registry aliases, which the template's
+  `import` lines therefore use. A template with no such line requires
+  nothing beyond the platform.
 - This replaces the legacy shell-script plugins. Templates are text; nothing
   is executed.
 
@@ -145,6 +153,14 @@ repository's Pages URL. roc-start reads both files from there.
 - Only assets whose filename matches `^[1-9A-HJ-NP-Za-km-z]{44}\.tar\.zst$`
   (44 base58 characters, the new compiler's bundle naming) are included.
   Legacy bundles are `.tar.br` with 43 base64url characters and are dropped.
+- When a release carries more than one matching asset (roc-ray publishes a
+  default and a Wayland bundle; roc-signals a web and a GUI platform;
+  roc-graph-layout two packages), the generator picks the asset whose
+  filename appears earliest in the release notes body, because authors list
+  the primary bundle first; if the body names none of them it falls back to
+  the first asset in API order. Either way it logs a warning naming the
+  repository and tag so the maintainer can see which releases are
+  ambiguous. The remaining bundles are not listed.
 - A release with no matching asset is omitted. A repository with no
   qualifying releases is still listed with an empty `releases` array so the
   client can tell "unknown package" from "no releases yet".
@@ -161,13 +177,20 @@ repository's Pages URL. roc-start reads both files from there.
 {
   "generic": "templates/generic.roc",
   "templates": {
-    "roc-lang/basic-cli": ["0.26.0", "0.28.0"],
-    "roc-lang/basic-webserver": ["0.13.0"]
+    "roc-lang/basic-cli": [
+      { "tag": "0.26.0", "requires": [] },
+      { "tag": "0.28.0", "requires": [] }
+    ],
+    "roc-lang/basic-webserver": [
+      { "tag": "0.21.0", "requires": ["roc-lang/http"] }
+    ]
   }
 }
 ```
 
-Tags are sorted ascending. The client resolves a template to
+Entries are sorted by tag ascending (semver, leading `v` ignored).
+`requires` comes from the template's `# requires:` line and is empty when
+the line is absent. The client resolves a template to
 `<pages-url>/templates/<owner>/<name>/<tag>.roc`, so `templates/` is also
 copied to `gh-pages` verbatim.
 
@@ -203,6 +226,8 @@ Runs `scripts/check_inputs.py` on every pull request and fails on any of:
   or `{{pf}}` (catches typos such as `{{platform}}`).
 - A template path whose `<owner>/<name>` is not a row in `platforms.csv`.
 - A template filename that is not a valid semver tag with optional `v`.
+- A `# requires:` line that names a repository not in `packages.csv`, or
+  that is not the first line of the template.
 
 ### `test_generate.py`
 

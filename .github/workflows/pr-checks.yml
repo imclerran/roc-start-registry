@@ -1,0 +1,12 @@
+name: pr-checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s scripts -t . -v
+      - run: python3 -m scripts.check_inputs

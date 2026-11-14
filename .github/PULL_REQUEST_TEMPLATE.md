@@ -1,0 +1,3 @@
+- [ ] The repository has at least one release whose bundle is a `.tar.zst` built with the new (Zig) Roc compiler.
+- [ ] I have built an app against the latest release on a current Roc nightly.
+- [ ] If this adds a platform, I have added or updated its template under `templates/<owner>/<name>/<tag>.roc` (with a `# requires:` first line for any extra package the stub imports), or confirmed the generic template suffices.
