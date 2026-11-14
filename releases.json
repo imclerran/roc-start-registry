@@ -1,0 +1,1902 @@
+{
+  "generated": "2026-11-14T17:42:35Z",
+  "roc": {
+    "nightly": "nightly-2026-11-13-03dce41"
+  },
+  "platforms": [
+    {
+      "repo": "lukewilliamboswell/basic-ssg",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.15.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.15.0/G5UJMRY1skYc7EWncQUEjzSRq9ock86wWE3VqzVsjBWS.tar.zst",
+          "published": "2026-11-11T13:30:05Z"
+        },
+        {
+          "tag": "0.14.1",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.14.1/A5DyTFxbg5zY37Lz5X4c9geKScrEK5LJnPeUTXn1NVG6.tar.zst",
+          "published": "2026-10-18T22:38:14Z"
+        },
+        {
+          "tag": "0.14.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.14.0/Fh8e797qgMC59JFDLYPjPC8cHDMMZo5YKmuoDPa8nNuw.tar.zst",
+          "published": "2026-10-18T17:31:27Z"
+        },
+        {
+          "tag": "0.13.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.13.0/2JyANXb36FC5N1DuzdfGEK6XC7QxqYbjZHegS98VbkFK.tar.zst",
+          "published": "2026-10-11T17:24:54Z"
+        },
+        {
+          "tag": "0.12.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.12.0/2C2pqQg55Sm4Y12imgSpdQi9bRiUeCbDGxF7puKrLqup.tar.zst",
+          "published": "2026-10-04T22:34:28Z"
+        },
+        {
+          "tag": "0.11.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.11.0/3vqgmE9dzxoPRNgCbUYrfJhcsyV1DKpi8Q8qKAsSt1Br.tar.zst",
+          "published": "2026-09-02T05:48:06Z"
+        },
+        {
+          "tag": "0.10.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.10.0/26wr2c8pfpVzPv93VVQ9Y2yRQz7tder7atwNG7PvWs6e.tar.zst",
+          "published": "2026-08-07T00:15:22Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-fuzz",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.6.2",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.6.2/3kyiehxxzwAsjM23uCQGJ3Hx7dAAdzSGtK3k9Jq7Egtu.tar.zst",
+          "published": "2026-11-13T22:39:14Z"
+        },
+        {
+          "tag": "0.6.1",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.6.1/GDoZFRDnzMRiVk9nE8wdWn52btGsM1GhcY9VDKqy9f1Y.tar.zst",
+          "published": "2026-11-12T04:17:14Z"
+        },
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.6.0/6uc3YKGydgEnS2nrCimSYWDNfT6drYcgU52VAwqrb6DS.tar.zst",
+          "published": "2026-11-10T23:28:25Z"
+        },
+        {
+          "tag": "0.5.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.5.0/9WT86CuwM7ZJBSs8iTd1jLyrUFTTiGp5hcJE63TwswGE.tar.zst",
+          "published": "2026-10-28T06:10:46Z"
+        },
+        {
+          "tag": "0.4.5",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.5/D4YgxZeGd6MqK1wA17xERBocQHnVff3c8UNmDcvGeF7J.tar.zst",
+          "published": "2026-10-28T00:59:13Z"
+        },
+        {
+          "tag": "0.4.4",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.4/D4YgxZeGd6MqK1wA17xERBocQHnVff3c8UNmDcvGeF7J.tar.zst",
+          "published": "2026-10-24T10:36:48Z"
+        },
+        {
+          "tag": "0.4.3",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.3/41NK5FShyGC9Z8HNpUdUeXMWwLmLNfFxsfmLvdPL4Fxb.tar.zst",
+          "published": "2026-10-05T07:49:16Z"
+        },
+        {
+          "tag": "0.4.2",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.2/9weENCAXVZV14WFpwHqP3rpn46EDJWQQknSLpa1Hg5nL.tar.zst",
+          "published": "2026-09-30T08:09:42Z"
+        },
+        {
+          "tag": "0.4.1",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.1/FfSwkD2HdA63fcar5Z4EQpTBSGy4LcvEGenqzgiy9Mix.tar.zst",
+          "published": "2026-09-27T22:05:07Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.0/48CzVvKajknVyVZnV8zCAk9cYuv7v1q9tJHSgwqfGorC.tar.zst",
+          "published": "2026-09-27T21:42:45Z"
+        },
+        {
+          "tag": "0.4.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.4.0-rc1/9k2cfuAWoBfcRBRiVbriXFf1dHktoRBbieifYN7NmTHc.tar.zst",
+          "published": "2026-09-08T08:17:04Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.3.0/FTcKnkDxL1ZXfKsxeLmNKZ6XKnuKDd47Gv79ThxLYSfw.tar.zst",
+          "published": "2026-08-25T03:59:20Z"
+        },
+        {
+          "tag": "0.2.1",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.2.1/9Qpttb6LTgcMaVsSBLsnaiS2mDUrf6Bxa6dX9Rqwviz4.tar.zst",
+          "published": "2026-08-10T01:38:07Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.2.0/9xpnP9ZqhuLk2D2LcYCFbqdkN3cpaKhERdoesPPrfKyM.tar.zst",
+          "published": "2026-08-09T00:55:58Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.1.0/5q6rwz3sTb1ftaFPS6E57yBjKNf2dwSxgrDVpw5XJ531.tar.zst",
+          "published": "2026-08-08T00:57:33Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-gui",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-gui/releases/download/0.1.0/5QqJ8taNJhmRPWiTkT4kJM8SnQrw6rbTH1eyaGt3By4o.tar.zst",
+          "published": "2026-11-11T09:56:39Z"
+        },
+        {
+          "tag": "0.1.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-gui/releases/download/0.1.0-rc1/BaLtTYxBTiD4HfzBUW6h2QRiawZ6L7kLMyLi3vbUzZ7j.tar.zst",
+          "published": "2026-10-24T09:09:49Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-platform-template-go",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-go/releases/download/0.1.0/6oMpr7FG877G5UCTGHas9wQw9Yuxqg6JbXe6PfSANCYD.tar.zst",
+          "published": "2026-10-28T22:46:25Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-platform-template-rust",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "1.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-rust/releases/download/1.2.0/35sUJ2P4QKHiznZXwega65p6kjDGi2yiRzysMdT4eEvo.tar.zst",
+          "published": "2026-10-28T21:39:29Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-rust/releases/download/1.0.0/Bu7FVf57VbTwUrUSumuTmQNMJLLmGBmer6L5AarS4qnV.tar.zst",
+          "published": "2026-07-06T04:09:13Z"
+        },
+        {
+          "tag": "0.4",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-rust/releases/download/0.4/3q9Kou2yUcPovfn1NhRrsvtcdfHUWmzyCaGwiupYFXUk.tar.zst",
+          "published": "2026-06-22T06:08:06Z"
+        },
+        {
+          "tag": "0.3",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-rust/releases/download/0.3/8xouhPcvnmhtGqo3yRVRBbKCTpaWPchZ56abkFLwhrSz.tar.zst",
+          "published": "2026-06-12T05:54:03Z"
+        },
+        {
+          "tag": "0.2",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-rust/releases/download/0.2/HE1dd8F5cekRpmZ8Bbr9KiRnnf2ipQM9S2jd2CkpPyo5.tar.zst",
+          "published": "2026-05-28T23:12:54Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-platform-template-zig",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "1.1.2",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/1.1.2/3kRwUs6PxnECpbmyiFE4HycHLf2jn8m7kJXJDuqZ5t2y.tar.zst",
+          "published": "2026-10-29T11:00:39Z"
+        },
+        {
+          "tag": "1.1.1",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/1.1.1/D9ewpjfRNar8sQgDig62XTbSgKLkNdaR7RCuTVMnjGQd.tar.zst",
+          "published": "2026-10-06T01:14:40Z"
+        },
+        {
+          "tag": "1.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/1.1.0/ABFgWwu8SwPJfp7tzxDoTL41b1jFeHEac3RxUFSt1WWp.tar.zst",
+          "published": "2026-08-05T03:26:47Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/1.0.0/AnZoxzoGPtSGQ15EQh6pBeeaHJ7aizP9MQhK81dES3Uq.tar.zst",
+          "published": "2026-07-06T02:51:28Z"
+        },
+        {
+          "tag": "0.9",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/0.9/8GdFEvQYS3TeAZxKvTzCLVdQiomweGtXcdZkXNDEeABq.tar.zst",
+          "published": "2026-06-22T06:12:21Z"
+        },
+        {
+          "tag": "0.8",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/0.8/8qf28cxTaxwA16Xe3VBR7YSP2KLVUqDHiPpFYgyikEa1.tar.zst",
+          "published": "2026-06-15T01:36:41Z"
+        },
+        {
+          "tag": "0.7",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/0.7/DuRUyJh31Gt41YArMcVcvybLa2bCWboccWQ7Zq1KZPZ6.tar.zst",
+          "published": "2026-05-28T22:59:16Z"
+        },
+        {
+          "tag": "0.6",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/0.6/2BfGn4M9uWJNhDVeMghGeXNVDFijMfPsmmVeo6M4QjKX.tar.zst",
+          "published": "2025-12-11T06:12:53Z"
+        },
+        {
+          "tag": "0.5",
+          "url": "https://github.com/lukewilliamboswell/roc-platform-template-zig/releases/download/0.5/BJBzo2SR2o5w3StmubGWvnPHq6hfePMaNWy5MwkPuZUs.tar.zst",
+          "published": "2025-12-09T18:56:39Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-ray",
+      "alias": "pf",
+      "variant": "default",
+      "releases": [
+        {
+          "tag": "0.12.2",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.2/A8Dt5CorYsEtHFh8h7SfMtpzSy73UWbaB5Twy9JoYS1U.tar.zst",
+          "published": "2026-11-12T05:35:23Z"
+        },
+        {
+          "tag": "0.11.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.11.0/5DK2k9ytp6Va7XrXy1hVJfGtrnXisde8NMNqvasXHDEU.tar.zst",
+          "published": "2026-10-24T10:05:12Z"
+        },
+        {
+          "tag": "types-0.9.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.9.0/BmSXwCo4tegQEkcPmYK7a5ABm6KPxsco7fZygzh1nG5v.tar.zst",
+          "published": "2026-08-26T01:07:54Z"
+        },
+        {
+          "tag": "types-0.8.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.8.0/3akQjTNsQGrAM5WP6Q2t1wHfPYitrMH1EHZ4dK7F4mHX.tar.zst",
+          "published": "2026-08-25T11:45:12Z"
+        },
+        {
+          "tag": "types-0.7.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.7.0/DWjJtKpk4QZWZcuafPm7gg9WGLxaeS1hetkYZMeboWQE.tar.zst",
+          "published": "2026-08-25T00:09:03Z"
+        },
+        {
+          "tag": "types-0.6.1",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.6.1/9AUpNYVQ9qPGKENm8dDJbqyCAyJi35jHUs8SCZugzF4x.tar.zst",
+          "published": "2026-08-24T08:11:01Z"
+        },
+        {
+          "tag": "types-0.6.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.6.0/BegkVdvrkZvX1Dan6UZho6USTbvzgNTpMFaN48rwhHrs.tar.zst",
+          "published": "2026-08-23T03:05:05Z"
+        },
+        {
+          "tag": "types-0.5.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.5.0/2t6FCJP9WGW8FdCaTh4brkUSfiX3fTLrn8qjc3Bjp8ju.tar.zst",
+          "published": "2026-08-21T03:22:22Z"
+        },
+        {
+          "tag": "types-0.4.1",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.4.1/HNCNHad6yHVaHqn4E9eAh1LGpfwhBmzrxgChAiZ6tshG.tar.zst",
+          "published": "2026-08-19T23:28:46Z"
+        },
+        {
+          "tag": "types-0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.4.0/7QYk3JhGCCBY5tTCSaUfNtkE6wayDKZshmHwzmLEobCf.tar.zst",
+          "published": "2026-08-15T04:01:20Z"
+        },
+        {
+          "tag": "types-0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.2.0/GVj9ZiNUTNjL7aKNGz1fdtZh75Hn8sgBmLr34sw9hw55.tar.zst",
+          "published": "2026-08-07T08:30:34Z"
+        },
+        {
+          "tag": "types-0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/types-0.1.0/BLqH8dcQg7q6vkrneBQrXhcRdo85ugx5fYP9ommzPGPb.tar.zst",
+          "published": "2026-08-07T07:01:54Z"
+        },
+        {
+          "tag": "0.8.3",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.8.3/E6ZmC6ZncTVFG875Xsf6jP2GuZCtLnncQ1YwVwKtT2J4.tar.zst",
+          "published": "2026-08-02T02:22:39Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-ray",
+      "alias": "pf",
+      "variant": "wayland",
+      "releases": [
+        {
+          "tag": "0.12.2",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.2/9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3.tar.zst",
+          "published": "2026-11-12T05:35:23Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-signals",
+      "alias": "pf",
+      "variant": "default",
+      "releases": [
+        {
+          "tag": "0.5.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.5.0/2SYUPo9uKFPJDvTyXiwsLEqHvmq7UMgaY4hdgMiSsSEF.tar.zst",
+          "published": "2026-11-12T07:46:58Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.4.0/7vs4uMWvwXDKDpHQ9DjH4no5SMqhDyohbZ9tGKHfZocr.tar.zst",
+          "published": "2026-11-12T04:20:16Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.3.0/8EdbW38jFHNsYmUddvFdruBCAhxPjGg5sMYpCRP3QsX7.tar.zst",
+          "published": "2026-11-09T00:03:22Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.2.0/HVuoh24a8qDGufPf1Q2PxUDdNiSRJfgZiSDgDPz4cTqZ.tar.zst",
+          "published": "2026-10-24T09:35:28Z"
+        },
+        {
+          "tag": "gui-0.1.0-rc.3",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/gui-0.1.0-rc.3/4KLMRtou7k3ongBBAwv3d42pMUsr2X1JSBAG2FMbPGXC.tar.zst",
+          "published": "2026-09-09T14:13:38Z"
+        },
+        {
+          "tag": "gui-0.1.0-rc.2",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/gui-0.1.0-rc.2/Cw8e3u53aaqePu31YevMELcXTdKBshh2uHs5zioWus1r.tar.zst",
+          "published": "2026-09-09T13:30:45Z"
+        },
+        {
+          "tag": "gui-0.1.0-rc.1",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/gui-0.1.0-rc.1/3AXUNGJ8auFSFGo7hwm8EDfdBhbXPLAPpf5epEaVU2Nt.tar.zst",
+          "published": "2026-09-09T11:23:25Z"
+        },
+        {
+          "tag": "0.2.0-rc2",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.2.0-rc2/AvyUxjkQaEPU7NKikDiz3U48XGMX1fpFgw2bppV87qLA.tar.zst",
+          "published": "2026-09-09T05:56:09Z"
+        },
+        {
+          "tag": "0.2.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.2.0-rc1/2AkoWkbJFbvPCzryikfAUcwUs1hL8x6UzwhzPFoxuvN5.tar.zst",
+          "published": "2026-09-08T02:54:38Z"
+        },
+        {
+          "tag": "0.1.1",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.1.1/3BQGKvqcvUutU8WBFJh2jghyRkRZkiByYkC17VjNzvZ2.tar.zst",
+          "published": "2026-08-26T05:58:29Z"
+        },
+        {
+          "tag": "0.1",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.1/3eLQGNMDG9RuL9sn1A7ep1Rtq7QGmemE89y141WSv1XG.tar.zst",
+          "published": "2026-06-30T23:01:06Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-wasm4",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.8.0",
+          "url": "https://github.com/lukewilliamboswell/roc-wasm4/releases/download/0.8.0/GM7NT8JuW6TB4X9FAZKiHC4yBJ6nzeNrRwuyjvyZdqMu.tar.zst",
+          "published": "2026-11-03T22:46:26Z"
+        },
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/lukewilliamboswell/roc-wasm4/releases/download/0.7.0/BGmWeWePVmGCq1S6FArkz2rdw2t3BMfWsK6WinpTyTp4.tar.zst",
+          "published": "2026-08-09T00:17:48Z"
+        },
+        {
+          "tag": "0.6",
+          "url": "https://github.com/lukewilliamboswell/roc-wasm4/releases/download/0.6/ADeKYHzDvyXSEZjj4wG3qRLTFRYiiEWLuVMPD5S8uBF3.tar.zst",
+          "published": "2026-06-22T06:13:36Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/joy",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.34.0",
+          "url": "https://github.com/niclas-ahden/joy/releases/download/0.34.0/2B3sC6U2dWkVUK2VY2gJS5Wej9YCDo3ZYq2e7tMWUCNp.tar.zst",
+          "published": "2026-10-07T16:06:29Z"
+        },
+        {
+          "tag": "0.33.0",
+          "url": "https://github.com/niclas-ahden/joy/releases/download/0.33.0/9UWLeQeJEUkXNGmZtibc1aqpL3gm6Li65GvXxsML5vFz.tar.zst",
+          "published": "2026-08-26T12:42:47Z"
+        },
+        {
+          "tag": "0.32.2",
+          "url": "https://github.com/niclas-ahden/joy/releases/download/0.32.2/Ce1qSM6yNhhF6UxSrQ3E4qaDDvqvsg2rtE7snUNHQJGi.tar.zst",
+          "published": "2026-08-16T16:10:56Z"
+        },
+        {
+          "tag": "0.32.1",
+          "url": "https://github.com/niclas-ahden/joy/releases/download/0.32.1/BBEFdA1VAk1WZvQWKs3yNfN2RMdZZP5DsM8j7gyNoFta.tar.zst",
+          "published": "2026-08-12T18:45:05Z"
+        },
+        {
+          "tag": "0.32.0",
+          "url": "https://github.com/niclas-ahden/joy/releases/download/0.32.0/BS9gh12P9ExUgjfq7rpzBrzgV4PHijUt7Qh5vRELXULw.tar.zst",
+          "published": "2026-08-04T04:05:04Z"
+        }
+      ]
+    },
+    {
+      "repo": "roc-lang/basic-cli",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.28.1",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.28.1/7brgwR8YUqfeGrkdfF1V4GPPN7DnP7ftqub9KcrTEZtr.tar.zst",
+          "published": "2026-11-13T22:43:38Z"
+        },
+        {
+          "tag": "0.28.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.28.0/2yhxoR7cZPSYbyUzPWULFw8AA6QEcdsgFNRmzu7pZbst.tar.zst",
+          "published": "2026-11-11T06:26:08Z"
+        },
+        {
+          "tag": "0.27.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.27.0/9yjxqdGTP4xSpSEmDazwTmRsehfRZzA19pwEKkR6fj1g.tar.zst",
+          "published": "2026-11-07T13:41:00Z"
+        },
+        {
+          "tag": "0.26.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.26.0/GddgvsGjiNXrHFW6au5i5dUDbTs8FinQdrgE2Gqmw53t.tar.zst",
+          "published": "2026-10-21T00:32:11Z"
+        },
+        {
+          "tag": "0.26.0-rc3",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.26.0-rc3/72LPrJNPhao1zzEbawpgzKnkwAPRKy6Xm8jM1rPchQ7o.tar.zst",
+          "published": "2026-10-19T09:33:15Z"
+        },
+        {
+          "tag": "0.26.0-rc2",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.26.0-rc2/Gj3zVDr3qrQa6aTh7Z1zgUfe9NeBE6R76T5ho3xrc8af.tar.zst",
+          "published": "2026-10-13T07:52:14Z"
+        },
+        {
+          "tag": "0.26.0-rc1",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.26.0-rc1/GMezHWvmUP42Leqg8YkABvEk27cMUSVM6p7oz3XPj11N.tar.zst",
+          "published": "2026-10-12T08:20:08Z"
+        },
+        {
+          "tag": "0.25.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.25.0/CZsY7tYZwR3rj9kYbpaCfxki2yVAaRL8bBwMLvB2xkbA.tar.zst",
+          "published": "2026-10-09T20:02:05Z"
+        },
+        {
+          "tag": "0.24.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.24.0/AEjfyaMFFbh8FJrkkHJy68riVNPr3Qp6c6PawWQjBwMH.tar.zst",
+          "published": "2026-10-05T07:08:18Z"
+        },
+        {
+          "tag": "0.23.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.23.0/GNN5tt2gKdX4dhawg4915C4YB193woHFdcCkz31fhGxv.tar.zst",
+          "published": "2026-09-27T11:00:03Z"
+        },
+        {
+          "tag": "0.23.0-rc1",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.23.0-rc1/3hT3SoHZ6qbEsa9qVFLUW3547U5LeoNd1KbpqLpz4r1i.tar.zst",
+          "published": "2026-09-08T04:09:01Z"
+        },
+        {
+          "tag": "0.22.2",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.22.2/9zUBxb1LtXYVc4eR4hAtd1WQDwBYDhM6HQdZz1UFCm2m.tar.zst",
+          "published": "2026-09-02T08:41:17Z"
+        },
+        {
+          "tag": "0.22.1",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.22.1/HjwuwWAr7T9hqQXcb8VbxLJw1SzVhWQz5vvx4mnG3wDW.tar.zst",
+          "published": "2026-09-01T00:48:20Z"
+        },
+        {
+          "tag": "0.22.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.22.0/F1JVZPYfWP71s8vk6tHcV1Qx1Ef6CZkwswGoCn8VHZmL.tar.zst",
+          "published": "2026-08-14T09:38:47Z"
+        },
+        {
+          "tag": "0.21.0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.21.0/4rAQg8kUYZ3Vksr4qMQHpaFYNiHSn9GgS7gVxghd1XYV.tar.zst",
+          "published": "2026-07-28T02:04:49Z"
+        },
+        {
+          "tag": "0.21.0-rc4",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.21.0-rc4/FvCh4vdqm3nBY6DWEfZ8RuGCVfjuMY43HA8KSNk9qVDn.tar.zst",
+          "published": "2026-07-15T07:06:16Z"
+        },
+        {
+          "tag": "0.21.0-rc3",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/0.21.0-rc3/Cv3oh6aPxqZxDeh1dgnXPjZnYsoqQMvEawa6TUc71sxJ.tar.zst",
+          "published": "2026-07-15T06:27:44Z"
+        },
+        {
+          "tag": "alpha-0",
+          "url": "https://github.com/roc-lang/basic-cli/releases/download/alpha-0/HVZonS7HStbvGwhqvDZE1HreyDfqD6tayzFbi9rAUXYN.tar.zst",
+          "published": "2026-01-07T05:14:06Z"
+        }
+      ]
+    },
+    {
+      "repo": "roc-lang/basic-webserver",
+      "alias": "pf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.21.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.21.0/4viZsnWjdYsyH4Q87ESFAwM5c55Hnc15nAGW1UwzWpFU.tar.zst",
+          "published": "2026-11-07T18:03:28Z"
+        },
+        {
+          "tag": "0.20.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.20.0/7dR2ewuEbpPQXTAZL3aH62weBwpNNjbCJtyyiRsufTNZ.tar.zst",
+          "published": "2026-11-02T18:34:42Z"
+        },
+        {
+          "tag": "0.19.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.19.0/4KBAoiBazDfi9UF6e3BYKwon6rA8mnx3dbLMLKFzdEMw.tar.zst",
+          "published": "2026-10-25T01:30:57Z"
+        },
+        {
+          "tag": "0.18.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.18.0/9VgbC77zLmYYgxLpiNGCq3eySyRCbE2RriAM4sjr2y81.tar.zst",
+          "published": "2026-10-12T14:30:02Z"
+        },
+        {
+          "tag": "0.17.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.17.0/AC9goxhsjJJdrQtnc2ga3eTiESyh6ZLraZJsCVdEfeZT.tar.zst",
+          "published": "2026-10-05T02:08:35Z"
+        },
+        {
+          "tag": "0.16.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.16.0/42jC1JT3auhHSmv2Ah8mW5F2MXiAakq1UQQ4NQceQjXw.tar.zst",
+          "published": "2026-08-11T01:36:03Z"
+        },
+        {
+          "tag": "0.15.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.15.0/HcMFsVT26qeMvqWtG5rfNhVMWjceYbKh1An4uYpheBVW.tar.zst",
+          "published": "2026-07-30T07:47:25Z"
+        },
+        {
+          "tag": "0.14.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.14.0/9mrSfhWKEXsrPUW2oHdZZGov1oMRryvvACDT8p7E97PY.tar.zst",
+          "published": "2026-07-27T23:30:22Z"
+        },
+        {
+          "tag": "0.14.0-rc1",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.14.0-rc1/GfM5qZLcKYGA9XD4V7u1S4RjWrdfws29Uz2m86C7bmUC.tar.zst",
+          "published": "2026-07-24T14:12:44Z"
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "repo": "hasnep/roc-ascii",
+      "alias": "ascii",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "v0.5.0",
+          "url": "https://github.com/Hasnep/roc-ascii/releases/download/v0.5.0/5WxqRf15XVko4HxVq5dW8r84s95CxrtvzrjZYwbg9Z3H.tar.zst",
+          "published": "2026-09-04T14:29:46Z"
+        },
+        {
+          "tag": "v0.4.1",
+          "url": "https://github.com/Hasnep/roc-ascii/releases/download/v0.4.1/AnawhDawcVySaW3ywcvfUPuhbXfJK7jcwEHaMBAfVv2y.tar.zst",
+          "published": "2026-08-18T06:00:06Z"
+        }
+      ]
+    },
+    {
+      "repo": "imclerran/roc-heck",
+      "alias": "heck",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "v0.2.0",
+          "url": "https://github.com/imclerran/roc-heck/releases/download/v0.2.0/Cq1cuiK2FS9iqRhTFM1bz2J7Qijjyd35qttTFoQrKmk2.tar.zst",
+          "published": "2026-11-13T02:40:38Z"
+        }
+      ]
+    },
+    {
+      "repo": "imclerran/roc-isodate",
+      "alias": "dt",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "v0.10.0",
+          "url": "https://github.com/imclerran/roc-isodate/releases/download/v0.10.0/BM2UQubKGpNSXE9WBEa65SXz9rYzGvLqxt3w9GLKybDH.tar.zst",
+          "published": "2026-11-08T00:21:54Z"
+        },
+        {
+          "tag": "v0.9.0",
+          "url": "https://github.com/imclerran/roc-isodate/releases/download/v0.9.0/FwUgHLFzeUzCCKjezbh5nGFxMAN7sFZEgiaZ2UBAhrsK.tar.zst",
+          "published": "2026-11-07T16:56:42Z"
+        },
+        {
+          "tag": "v0.8.0",
+          "url": "https://github.com/imclerran/roc-isodate/releases/download/v0.8.0/H363y6zEDk8hbLgYVpyALt7cYS6w65sHMfoPEaCNqQY9.tar.zst",
+          "published": "2026-10-31T16:34:15Z"
+        }
+      ]
+    },
+    {
+      "repo": "imclerran/rtils",
+      "alias": "rtils",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "v0.3.0",
+          "url": "https://github.com/imclerran/rtils/releases/download/v0.3.0/EXiBNd2GnAyjgUAEvN2xqwASvKK4RQ1JMs4hSh6t2axc.tar.zst",
+          "published": "2026-11-13T02:34:37Z"
+        },
+        {
+          "tag": "v0.2.0",
+          "url": "https://github.com/imclerran/rtils/releases/download/v0.2.0/HZv4nkADpS7n4VsERuXtceZy1RhJcqGXZCWYsMKKLjtG.tar.zst",
+          "published": "2026-05-12T00:07:22Z"
+        }
+      ]
+    },
+    {
+      "repo": "jaredramirez/roc-redis",
+      "alias": "redis",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.0-rc4",
+          "url": "https://github.com/jaredramirez/roc-redis/releases/download/0.1.0-rc4/8BsZJKf5j58G6rxgggefDWqmgfdDkYmJbNUSTb8NvRfC.tar.zst",
+          "published": "2026-09-15T13:35:53Z"
+        },
+        {
+          "tag": "0.1.0-rc3",
+          "url": "https://github.com/jaredramirez/roc-redis/releases/download/0.1.0-rc3/EHoKAC3XP1CBAjNUWYAbtZkRExBW1zRTTdeS4zoBAQ19.tar.zst",
+          "published": "2026-09-15T00:52:43Z"
+        },
+        {
+          "tag": "0.1.0-rc1",
+          "url": "https://github.com/jaredramirez/roc-redis/releases/download/0.1.0-rc1/D8HziVQtZBUBer5ASdLDqwsFwXwZ2pV5XNQ9C21urvTZ.tar.zst",
+          "published": "2026-09-09T22:32:45Z"
+        }
+      ]
+    },
+    {
+      "repo": "Karakatiza666/roc-semver",
+      "alias": "semver",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/Karakatiza666/roc-semver/releases/download/0.2.0/BzgH68Q1yBkg7F1ZpFsiEg73ZwkaBrFdcLpX2pUkay9i.tar.zst",
+          "published": "2026-11-01T17:20:20Z"
+        }
+      ]
+    },
+    {
+      "repo": "Karakatiza666/roc-toml",
+      "alias": "toml",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/Karakatiza666/roc-toml/releases/download/0.1.0/3icmtKz6XQUyHqu5JftcoJJT6a9YTND1B8z1UAmtqJpN.tar.zst",
+          "published": "2026-10-16T13:21:47Z"
+        }
+      ]
+    },
+    {
+      "repo": "kili-ilo/roc-random",
+      "alias": "random",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.9.3",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.9.3/HoULZB8QzktiNPYSe9myzy9JQzm1nMbjDPVWoA63QpVf.tar.zst",
+          "published": "2026-10-24T00:33:38Z"
+        },
+        {
+          "tag": "0.9.2",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.9.2/2ZXLX8WRqrosGu1V3VL5aXqgtfTRvJmjFPx8a26ecVmc.tar.zst",
+          "published": "2026-08-15T03:42:59Z"
+        },
+        {
+          "tag": "0.9.1",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.9.1/4y2ZUECKuLohLfnxRmukt3wHCBMDYwkKDc2jLSmYz8NM.tar.zst",
+          "published": "2026-08-13T22:15:44Z"
+        },
+        {
+          "tag": "0.9.0",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.9.0/CwDEAmyUMCsqW6dh4pxYnp7suUZAj5b5gpZuh7udtyE7.tar.zst",
+          "published": "2026-08-03T00:15:59Z"
+        },
+        {
+          "tag": "0.7.1",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.7.1/CQxsugKpN13qpgSGgsNBSA28dhjU5VskQVgEcbHmur5p.tar.zst",
+          "published": "2026-07-21T13:12:03Z"
+        },
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.7.0/2LdxsJEfiBKwTBZc8SF1SidGC68wKCvfAwVREwWKwZu7.tar.zst",
+          "published": "2026-07-17T03:43:04Z"
+        },
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/kili-ilo/roc-random/releases/download/0.6.0/4mHqd7aiQ1hYkoso9C8JRfnx3GuwcwoDqv8EdqAsLbfN.tar.zst",
+          "published": "2026-06-30T10:34:30Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-ansi",
+      "alias": "ansi",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.13.5",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.13.5/BioPdu7WjVhTB2j1HaomKMi8htxsuwqwr79GbXY5nAUf.tar.zst",
+          "published": "2026-11-09T03:22:28Z"
+        },
+        {
+          "tag": "0.13.4",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.13.4/BioPdu7WjVhTB2j1HaomKMi8htxsuwqwr79GbXY5nAUf.tar.zst",
+          "published": "2026-10-27T05:42:26Z"
+        },
+        {
+          "tag": "0.13.3",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.13.3/BioPdu7WjVhTB2j1HaomKMi8htxsuwqwr79GbXY5nAUf.tar.zst",
+          "published": "2026-10-24T00:41:18Z"
+        },
+        {
+          "tag": "0.13.2",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.13.2/7yixATpLmwqtNujvYk1sKvZHmgFBMm7B9y7amxVZAhAn.tar.zst",
+          "published": "2026-10-12T02:15:39Z"
+        },
+        {
+          "tag": "0.13.1",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.13.1/HnCE6jsqfFW5VYobVZL33ykurgDjFPLjPJYstirZRDZT.tar.zst",
+          "published": "2026-10-11T10:50:33Z"
+        },
+        {
+          "tag": "0.12.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.12.0/J75zfZxPJQwSG7sQJFnZHVAbJj55L3myvst2WcDWcEaZ.tar.zst",
+          "published": "2026-07-22T06:13:21Z"
+        },
+        {
+          "tag": "0.11.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.11.0/BFo7r3Lx4fuCj9ZoKagjcrkps2ceF8c1rmou1NCSos8B.tar.zst",
+          "published": "2026-07-10T02:43:45Z"
+        },
+        {
+          "tag": "0.10.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.10.0/BFo7r3Lx4fuCj9ZoKagjcrkps2ceF8c1rmou1NCSos8B.tar.zst",
+          "published": "2026-07-10T02:13:04Z"
+        },
+        {
+          "tag": "0.9.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.9.0/C2RG1B9Caohfb8dfqrKu3Wu9TDQNq4zfixxAvLnMFVEL.tar.zst",
+          "published": "2026-06-30T00:28:42Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-font",
+      "alias": "font",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.1",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.1/3Es9Gca6KTySYDqcDPHwVqpAqJk6KwT9G4xkcLoYaSsx.tar.zst",
+          "published": "2026-11-11T01:30:16Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.0/3Es9Gca6KTySYDqcDPHwVqpAqJk6KwT9G4xkcLoYaSsx.tar.zst",
+          "published": "2026-11-11T00:59:38Z"
+        },
+        {
+          "tag": "0.1.0-rc4",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.0-rc4/3Es9Gca6KTySYDqcDPHwVqpAqJk6KwT9G4xkcLoYaSsx.tar.zst",
+          "published": "2026-10-29T04:04:05Z"
+        },
+        {
+          "tag": "0.1.0-rc3",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.0-rc3/3hajYpkYGrHsQG2oYkc8fntFWUHDvqsDSttfXN75tkXW.tar.zst",
+          "published": "2026-10-25T22:45:28Z"
+        },
+        {
+          "tag": "0.1.0-rc2",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.0-rc2/A14BmicBaf6dm4K9kdYH9j8Y6BoAZrpUmxWh9sojsFy5.tar.zst",
+          "published": "2026-10-25T03:42:44Z"
+        },
+        {
+          "tag": "0.1.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.0-rc1/Htk86c6Rt21oHN9zroWfqBEwtTuQ1EVgkMPMrgernGWA.tar.zst",
+          "published": "2026-10-25T02:19:02Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-graph-layout",
+      "alias": "graph",
+      "variant": "layout",
+      "releases": [
+        {
+          "tag": "0.3.1",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.1/layout-A3CBTbdsMzJdxUtRtceC4u4PX9uic9TxFTPF5HnnKmmP.tar.zst",
+          "published": "2026-11-09T12:24:56Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.0/layout-A3CBTbdsMzJdxUtRtceC4u4PX9uic9TxFTPF5HnnKmmP.tar.zst",
+          "published": "2026-11-09T03:57:34Z"
+        },
+        {
+          "tag": "0.3.0-rc3",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.0-rc3/layout-A3CBTbdsMzJdxUtRtceC4u4PX9uic9TxFTPF5HnnKmmP.tar.zst",
+          "published": "2026-10-29T02:33:39Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.2.0/7xtfva8cSwNKfzonPwh2nLurdwkcYLwbTD6iAKkMhjNs.tar.zst",
+          "published": "2026-10-24T03:46:01Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.1.0/2xyQdrf7DWirDTNyDySCGS8euQm8U7aBumTPnqhQgSSF.tar.zst",
+          "published": "2026-08-14T05:13:42Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-graph-layout",
+      "alias": "mermaid",
+      "variant": "mermaid",
+      "releases": [
+        {
+          "tag": "0.3.1",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.1/mermaid-CLpW9krKNwUvfGgajVrRjEhbu2F4sNqKYYfLoTmgEXRh.tar.zst",
+          "published": "2026-11-09T12:24:56Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.0/mermaid-FX8oD6yjkBYmZzJEHLLA9VUGQEHRVu5kRGtow2NC7Nru.tar.zst",
+          "published": "2026-11-09T03:57:34Z"
+        },
+        {
+          "tag": "0.3.0-rc3",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.0-rc3/mermaid-A9th2FTnD4nQrV1nkr9mMZFp6JkK4aNzt7Gi6HAGHWrr.tar.zst",
+          "published": "2026-10-29T02:33:39Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-pandoc",
+      "alias": "pandoc",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.3",
+          "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.2.3/HxzXVwyUykMzb7sC7p51qwopSMrcGjwrKUcL8Ees1uaf.tar.zst",
+          "published": "2026-11-09T03:31:00Z"
+        },
+        {
+          "tag": "0.2.2",
+          "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.2.2/HxzXVwyUykMzb7sC7p51qwopSMrcGjwrKUcL8Ees1uaf.tar.zst",
+          "published": "2026-10-28T00:34:53Z"
+        },
+        {
+          "tag": "0.2.1",
+          "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.2.1/HxzXVwyUykMzb7sC7p51qwopSMrcGjwrKUcL8Ees1uaf.tar.zst",
+          "published": "2026-10-28T00:17:23Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.2.0/8XwN7R2EW8Ewwq9jn5tqyCFuPZrEZXTKRDEpsugm9c6v.tar.zst",
+          "published": "2026-10-06T01:03:23Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.1.0/8pDy8BV37fo72fRdpLr6rsAcosdJKJgVR2mT9GU17FuD.tar.zst",
+          "published": "2026-09-09T08:11:53Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-parser",
+      "alias": "parser",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "6.0.0-rc.2",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.2/2H2hePe5iYTZaGdG9MbMqhS29yg4Zxxr7dPEbZJ96fME.tar.zst",
+          "published": "2026-11-14T04:18:10Z"
+        },
+        {
+          "tag": "6.0.0-rc.1",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.1/73WRCGdN4doPdfzqKAHBkwKQksAxmtoAr4Fu3dzDMvTC.tar.zst",
+          "published": "2026-11-09T08:13:29Z"
+        },
+        {
+          "tag": "5.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/5.0.0/GWrbcSuoXstBeasuzyfMuXe99zFZFLgBhoWavjA7rteZ.tar.zst",
+          "published": "2026-11-09T04:04:56Z"
+        },
+        {
+          "tag": "4.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/4.0.0/FZVf39nPJLaMEmchcwTU5rWtMrcipBGbGsTk3nHzvjzk.tar.zst",
+          "published": "2026-11-03T03:55:57Z"
+        },
+        {
+          "tag": "3.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/3.0.0/6xsRdRqenJrAb4wG7HaST4Xh349vD5sHAJDsKTK6E3dr.tar.zst",
+          "published": "2026-10-22T04:56:21Z"
+        },
+        {
+          "tag": "2.1.0-rc.3",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/2.1.0-rc.3/E5r48puF3KGvqzbd6v1JWA7qJFMehppWb7A6NzRWieJT.tar.zst",
+          "published": "2026-10-18T02:54:07Z"
+        },
+        {
+          "tag": "2.1.0-rc.2",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/2.1.0-rc.2/CZPwnt8ziVkc4v27SX7y2c8shxvPToiXiU1Y55E8tobb.tar.zst",
+          "published": "2026-10-17T20:54:02Z"
+        },
+        {
+          "tag": "2.1.0-rc.1",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/2.1.0-rc.1/6dvNG3Q2mx53i4YPJN2ZGK98WdXnBMMuceAmDsCq7BEd.tar.zst",
+          "published": "2026-10-16T05:04:44Z"
+        },
+        {
+          "tag": "2.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/2.0.0/7CLzCK6qUz7zmj6nvBxMEFu11HPwQTnCovKiyWzDSLTW.tar.zst",
+          "published": "2026-10-01T17:45:16Z"
+        },
+        {
+          "tag": "1.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/1.2.0/GzeZxk7V7GHFa42qhgzd8gUgX6cEyY3NmrwmDfsuskNd.tar.zst",
+          "published": "2026-09-02T05:11:41Z"
+        },
+        {
+          "tag": "1.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/1.1.0/AcowGJvjA8U2gCEf7E8QYNUePBdw7dzdRqSvERKaJZ53.tar.zst",
+          "published": "2026-08-18T06:58:11Z"
+        },
+        {
+          "tag": "1.0.2",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/1.0.2/FrnJ4RGDKpQyoDyESNoBwFNviY4ZGbMVLnUjW9tvSRjk.tar.zst",
+          "published": "2026-07-10T03:48:37Z"
+        },
+        {
+          "tag": "1.0.1",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/1.0.1/FrnJ4RGDKpQyoDyESNoBwFNviY4ZGbMVLnUjW9tvSRjk.tar.zst",
+          "published": "2026-07-10T03:20:33Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/1.0.0/FrnJ4RGDKpQyoDyESNoBwFNviY4ZGbMVLnUjW9tvSRjk.tar.zst",
+          "published": "2026-07-06T08:06:54Z"
+        },
+        {
+          "tag": "0.11.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/0.11.0/HS5cXN8JrJKdxM2Y8azXzbHCxCx2qxocySTGr6sLGQTZ.tar.zst",
+          "published": "2026-06-30T10:47:19Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-pdf",
+      "alias": "pdf",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.3.0/A69rkkudc2QNY4ENfKT4e428pwy955uRYMh4sKVvwkQA.tar.zst",
+          "published": "2026-11-09T04:41:56Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.2.0/2hTpvYoKFHy8C6VeEgiv4FgWkP4oNTVupc1XCN8UwdiZ.tar.zst",
+          "published": "2026-10-29T00:13:34Z"
+        },
+        {
+          "tag": "0.2.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.2.0-rc1/J3ssr9CQcBBnd66d7677qWM3AJwvdaHMN3RbHp75VpPa.tar.zst",
+          "published": "2026-10-27T21:57:17Z"
+        },
+        {
+          "tag": "0.1.1",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.1/74vCqoe79STiSdqyfE5FGTjaETWTnZbmNEVNbbKb9kyB.tar.zst",
+          "published": "2026-10-26T02:53:06Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0/FtvjgqwbGNGsm97hoN8kayCX3QacEwMbJo6aPZd7LPEi.tar.zst",
+          "published": "2026-10-24T11:41:14Z"
+        },
+        {
+          "tag": "0.1.0-rc6",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0-rc6/BRKYfdjzNFJmhx5c3Do9gTnW7FrZuYqoUzMcg1FHkYBf.tar.zst",
+          "published": "2026-10-18T23:24:45Z"
+        },
+        {
+          "tag": "0.1.0-rc5",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0-rc5/ANqp54fCvoErcZijX5Dr2cZj5G7ZzW6DYNLPj5GJBz4N.tar.zst",
+          "published": "2026-10-16T06:47:58Z"
+        },
+        {
+          "tag": "0.1.0-rc4",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0-rc4/HqPLkg6Hn5wj4TKdQbrmRALzRQqWM2GbrZDN1t1oRn1D.tar.zst",
+          "published": "2026-10-16T05:30:05Z"
+        },
+        {
+          "tag": "0.1.0-rc3",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0-rc3/62BcC7hRi2o5WbafX25XoPwcHzyj39Zsh2SqLjoZKx3p.tar.zst",
+          "published": "2026-10-15T02:28:50Z"
+        },
+        {
+          "tag": "0.1.0-rc2",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0-rc2/4nG76VsTowPy7CZte89gfUNAPTQBeysb3ciufnfAE5T8.tar.zst",
+          "published": "2026-08-19T10:38:46Z"
+        },
+        {
+          "tag": "0.1.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.1.0-rc1/5f2kc2B9MXvxB9uHeJQNJMZd9gbYHCAbRCgJfKcfjD2v.tar.zst",
+          "published": "2026-08-09T09:35:12Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/roc-signals",
+      "alias": "signals",
+      "variant": "signals",
+      "releases": [
+        {
+          "tag": "0.5.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.5.0/signals-DTxcfjXp6v7rGZ66rh9bazYz3UWMn8d85SiMUjMV9TDV.tar.zst",
+          "published": "2026-11-12T07:46:58Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.4.0/signals-HKgRjKNcKqbnigPyEfqrKR9KsC517rCThhhZSsGVraGr.tar.zst",
+          "published": "2026-11-12T04:20:16Z"
+        }
+      ]
+    },
+    {
+      "repo": "lukewilliamboswell/weaver",
+      "alias": "weaver",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.10.2",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.10.2/7CdYzjBAJmprmnK45oTpmH6BXt76ZASN2Ck5uZQEoWsK.tar.zst",
+          "published": "2026-11-09T03:33:36Z"
+        },
+        {
+          "tag": "0.10.1",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.10.1/7CdYzjBAJmprmnK45oTpmH6BXt76ZASN2Ck5uZQEoWsK.tar.zst",
+          "published": "2026-11-03T02:33:29Z"
+        },
+        {
+          "tag": "0.10.0",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.10.0/7CdYzjBAJmprmnK45oTpmH6BXt76ZASN2Ck5uZQEoWsK.tar.zst",
+          "published": "2026-10-24T04:43:23Z"
+        },
+        {
+          "tag": "0.9.1",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.9.1/7ohGuVGbeaGAAMbx2btnZqnYgtNvMqmfD6hhzpQPbbiB.tar.zst",
+          "published": "2026-10-24T02:40:28Z"
+        },
+        {
+          "tag": "0.9.0",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.9.0/7j6KBFBEZ8pNMLQHkx9xiwyZ2PmwQPgKNDPUih6gKe77.tar.zst",
+          "published": "2026-09-02T23:26:47Z"
+        },
+        {
+          "tag": "0.8.0",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.8.0/7j6KBFBEZ8pNMLQHkx9xiwyZ2PmwQPgKNDPUih6gKe77.tar.zst",
+          "published": "2026-08-21T22:49:26Z"
+        },
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.7.0/9PiT7ffE9m8BJyVv3LwE4rWWdcbpxEMUADMpiLBfY8jJ.tar.zst",
+          "published": "2026-07-28T02:45:11Z"
+        },
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.6.0/FW7Bimp4psiwMUvzJpM9xkvAq5beHFYQRCTTaeJUV7X6.tar.zst",
+          "published": "2026-07-22T08:31:32Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/joy-html",
+      "alias": "html",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.17.1",
+          "url": "https://github.com/niclas-ahden/joy-html/releases/download/0.17.1/AcmwFzyfbsf5RALWNdX6cXw1cuuDXt96YfcysNqgFqoG.tar.zst",
+          "published": "2026-10-25T10:52:21Z"
+        },
+        {
+          "tag": "0.17.0",
+          "url": "https://github.com/niclas-ahden/joy-html/releases/download/0.17.0/AcmwFzyfbsf5RALWNdX6cXw1cuuDXt96YfcysNqgFqoG.tar.zst",
+          "published": "2026-10-03T18:43:53Z"
+        },
+        {
+          "tag": "0.16.0",
+          "url": "https://github.com/niclas-ahden/joy-html/releases/download/0.16.0/56NBT6VkQ5xm87Wjzcv9mRuNT4RACiAmuAmPbXwc8cuk.tar.zst",
+          "published": "2026-08-10T13:31:13Z"
+        },
+        {
+          "tag": "0.15.0",
+          "url": "https://github.com/niclas-ahden/joy-html/releases/download/0.15.0/5Yoz712P8ed4MBW74eddTEJdZ92ZDCUbVGFkt4XXSuj9.tar.zst",
+          "published": "2026-08-03T14:54:58Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-base64",
+      "alias": "base64",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "1.0.2",
+          "url": "https://github.com/niclas-ahden/roc-base64/releases/download/1.0.2/DQBxATK6BtaCWe56bCmkMgdKJR2Ym8NiZZLhYCAgtLac.tar.zst",
+          "published": "2026-10-25T10:55:06Z"
+        },
+        {
+          "tag": "1.0.1",
+          "url": "https://github.com/niclas-ahden/roc-base64/releases/download/1.0.1/DQBxATK6BtaCWe56bCmkMgdKJR2Ym8NiZZLhYCAgtLac.tar.zst",
+          "published": "2026-08-10T17:06:10Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/niclas-ahden/roc-base64/releases/download/1.0.0/EbhFL76r4ExvRvPmho7o3fhWjpTV4fQNG1g8w74BN4Sq.tar.zst",
+          "published": "2026-07-18T21:30:51Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-crc32",
+      "alias": "crc32",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "2.0.0",
+          "url": "https://github.com/niclas-ahden/roc-crc32/releases/download/2.0.0/Dpu6zTP4s6bYRC2U9jWK7CcNBNGEfViKQbp35xSRC2Cr.tar.zst",
+          "published": "2026-10-25T11:45:03Z"
+        },
+        {
+          "tag": "1.0.4",
+          "url": "https://github.com/niclas-ahden/roc-crc32/releases/download/1.0.4/H7PGfAdWAHVHcw2RHGRkXzEZzzNjhmYm8vcDMmYvogw7.tar.zst",
+          "published": "2026-10-25T10:55:03Z"
+        },
+        {
+          "tag": "1.0.3",
+          "url": "https://github.com/niclas-ahden/roc-crc32/releases/download/1.0.3/H7PGfAdWAHVHcw2RHGRkXzEZzzNjhmYm8vcDMmYvogw7.tar.zst",
+          "published": "2026-08-17T17:18:37Z"
+        },
+        {
+          "tag": "1.0.2",
+          "url": "https://github.com/niclas-ahden/roc-crc32/releases/download/1.0.2/3SyZRNx1Qc8SrCv8Q6zi3KJT8pYfcf7RrVqdG2S1cnZ1.tar.zst",
+          "published": "2026-07-22T21:06:21Z"
+        },
+        {
+          "tag": "1.0.1",
+          "url": "https://github.com/niclas-ahden/roc-crc32/releases/download/1.0.1/HVurHuv9QCbMcE6aBhig2z8E1UpJ3cZm8TWo9gjaPJiT.tar.zst",
+          "published": "2026-07-19T11:10:04Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/niclas-ahden/roc-crc32/releases/download/1.0.0/2urjSYAC2eMaxfgVgxcznNfEUV4jALxgc5RWneZaw4RE.tar.zst",
+          "published": "2026-07-06T12:22:17Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-database-url",
+      "alias": "db",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.4.1",
+          "url": "https://github.com/niclas-ahden/roc-database-url/releases/download/0.4.1/3tFBYWq9eBxjJe9FZJLbuQtUaFBrz3ykK2QDooeFM9Fy.tar.zst",
+          "published": "2026-10-25T11:05:09Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/niclas-ahden/roc-database-url/releases/download/0.4.0/6sKP47ivkLchhdvDMDe9ajVoiFPEP57ZgQoEy2WTDczX.tar.zst",
+          "published": "2026-09-22T14:41:56Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/niclas-ahden/roc-database-url/releases/download/0.3.0/HTtdy7BMLHRmLiMfdTQbf4YYzDGi6ihuUibMVUx67n8d.tar.zst",
+          "published": "2026-07-25T21:43:13Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-deflate",
+      "alias": "deflate",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.5.1",
+          "url": "https://github.com/niclas-ahden/roc-deflate/releases/download/0.5.1/Cw6pRiwXiLWXafQSc7asFE4wVWQjmaEwXSQW9UAaybpn.tar.zst",
+          "published": "2026-10-25T10:52:18Z"
+        },
+        {
+          "tag": "0.5.0",
+          "url": "https://github.com/niclas-ahden/roc-deflate/releases/download/0.5.0/Cw6pRiwXiLWXafQSc7asFE4wVWQjmaEwXSQW9UAaybpn.tar.zst",
+          "published": "2026-10-23T16:55:41Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/niclas-ahden/roc-deflate/releases/download/0.4.0/EfqJ3mg4ojXWv2i6q4bDuJaycLts3gqb5mgKKn9jykqZ.tar.zst",
+          "published": "2026-10-18T20:20:47Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/niclas-ahden/roc-deflate/releases/download/0.3.0/9d7QRzf6vgYMDqXgTsL5sTh8B475yeL8KUAp8TJKs2Q5.tar.zst",
+          "published": "2026-09-14T11:34:39Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-deflate/releases/download/0.2.0/9d7QRzf6vgYMDqXgTsL5sTh8B475yeL8KUAp8TJKs2Q5.tar.zst",
+          "published": "2026-08-17T17:27:02Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/niclas-ahden/roc-deflate/releases/download/0.1.0/9d7QRzf6vgYMDqXgTsL5sTh8B475yeL8KUAp8TJKs2Q5.tar.zst",
+          "published": "2026-07-22T21:42:33Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-hmac",
+      "alias": "hmac",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.3.1",
+          "url": "https://github.com/niclas-ahden/roc-hmac/releases/download/0.3.1/C4tVVXqXphwD9P271wA9BE62KikS63ZhTjWtqbkDQWMs.tar.zst",
+          "published": "2026-10-25T11:05:05Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/niclas-ahden/roc-hmac/releases/download/0.3.0/692Zyuqqfa5borNF5ugCfQ5ef7FKvBNer3ziwykTYv8m.tar.zst",
+          "published": "2026-09-14T12:39:33Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-hmac/releases/download/0.2.0/6ZdFvvyNmkxhzBJwXHxocvH5atdLJo2JSZAKyHbQkUQm.tar.zst",
+          "published": "2026-08-17T17:20:48Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/niclas-ahden/roc-hmac/releases/download/0.1.0/5Ea2yTpwJBspxvneBcKVNjRNMCxZtxR3VwqxUnRTN22E.tar.zst",
+          "published": "2026-08-03T15:53:27Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-human-readable-file-size",
+      "alias": "filesize",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "1.0.2",
+          "url": "https://github.com/niclas-ahden/roc-human-readable-file-size/releases/download/1.0.2/HQs8gQEAD6Si7SwCgAycVgf4cu8dGJtqgrrL1EnojSfc.tar.zst",
+          "published": "2026-10-25T10:55:06Z"
+        },
+        {
+          "tag": "1.0.1",
+          "url": "https://github.com/niclas-ahden/roc-human-readable-file-size/releases/download/1.0.1/HQs8gQEAD6Si7SwCgAycVgf4cu8dGJtqgrrL1EnojSfc.tar.zst",
+          "published": "2026-08-17T17:19:51Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-maybe",
+      "alias": "maybe",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "1.1.3",
+          "url": "https://github.com/niclas-ahden/roc-maybe/releases/download/1.1.3/FD2xrazgDzwmtvDZ1tWnHfDZr4RyVzgnwn6zKYvhawGh.tar.zst",
+          "published": "2026-11-11T15:42:25Z"
+        },
+        {
+          "tag": "1.1.2",
+          "url": "https://github.com/niclas-ahden/roc-maybe/releases/download/1.1.2/7gJRWDM6NXtMU9dZy2i49yeCfP7aWcA1aVsXPWyWUYKS.tar.zst",
+          "published": "2026-10-25T10:52:16Z"
+        },
+        {
+          "tag": "1.1.1",
+          "url": "https://github.com/niclas-ahden/roc-maybe/releases/download/1.1.1/7gJRWDM6NXtMU9dZy2i49yeCfP7aWcA1aVsXPWyWUYKS.tar.zst",
+          "published": "2026-09-22T14:41:30Z"
+        },
+        {
+          "tag": "1.1.0",
+          "url": "https://github.com/niclas-ahden/roc-maybe/releases/download/1.1.0/8nhB8APydy9dWi5uZnEQhQZcbx712hhMcS8cB7xvn6sX.tar.zst",
+          "published": "2026-08-17T12:47:35Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/niclas-ahden/roc-maybe/releases/download/1.0.0/ELeNjPzRcw9QNAo92SBhYnPWqfadv5tttz7qzr8okihv.tar.zst",
+          "published": "2026-07-06T15:55:09Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-md5",
+      "alias": "md5",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-md5/releases/download/0.2.0/CGfCKDZFS46am7jECn4V7pqQZnHAXkxuRJvN5ukZArUa.tar.zst",
+          "published": "2026-10-25T11:45:01Z"
+        },
+        {
+          "tag": "0.1.1",
+          "url": "https://github.com/niclas-ahden/roc-md5/releases/download/0.1.1/4KFLZQruZ3ERBkDA2Ki2zqYtQ9hASWm4VLgFtkWu4Lj5.tar.zst",
+          "published": "2026-10-02T14:05:41Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-non-zero",
+      "alias": "nz",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.1",
+          "url": "https://github.com/niclas-ahden/roc-non-zero/releases/download/0.1.1/3GhZZpgGxxb5u1uYgK6BCQtfS41C2kyjwFsS1dFQFDwy.tar.zst",
+          "published": "2026-10-25T10:55:05Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/niclas-ahden/roc-non-zero/releases/download/0.1.0/3GhZZpgGxxb5u1uYgK6BCQtfS41C2kyjwFsS1dFQFDwy.tar.zst",
+          "published": "2026-08-02T22:39:04Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-openapi",
+      "alias": "openapi",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.2",
+          "url": "https://github.com/niclas-ahden/roc-openapi/releases/download/0.2.2/B4ctbxsWeVVdMKDTU2Jk2PTMUbcKe4yJSC19jEmBjbk8.tar.zst",
+          "published": "2026-11-12T08:56:36Z"
+        },
+        {
+          "tag": "0.2.1",
+          "url": "https://github.com/niclas-ahden/roc-openapi/releases/download/0.2.1/5fQEMmB1UxbMjEPV8QLzz5qztEM9dvCLtG93KHsYYZ8g.tar.zst",
+          "published": "2026-10-25T17:36:46Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-openapi/releases/download/0.2.0/J4TCLrSzmB2XKHN9BLxcREjG4LUUgkH4uUoMZcsy32Qm.tar.zst",
+          "published": "2026-10-01T18:02:41Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-pg",
+      "alias": "pg",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.5.1",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.5.1/9LbRCJQYW2JPTC1SuvriB4FrxAxW6JHtZioqQ5Ju1Ur8.tar.zst",
+          "published": "2026-10-31T14:39:24Z"
+        },
+        {
+          "tag": "0.5.0",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.5.0/3RhKioDLx8pWHv72xyu4Dc3U3xyWQiAokmBXyezbPSxr.tar.zst",
+          "published": "2026-10-25T17:01:58Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.4.0/2hQos9tnRU5nE23354wefXWjxiDcFSMV9ydt9s61X5wf.tar.zst",
+          "published": "2026-10-17T23:07:59Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.3.0/FjgZ9u9B4VtJPbDSkjBykBzNjWXAWp25ZiVumCNyxVQC.tar.zst",
+          "published": "2026-10-11T20:11:17Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.2.0/EGCCBmR793d6wQJzX8aS9994n9nzz6dgMvhKuU6PqQ12.tar.zst",
+          "published": "2026-09-30T15:20:30Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.1.0/6AJ537Fhm4hhsgAERCmtJxWZ9mRfT6sa8ysZWNM1U4a4.tar.zst",
+          "published": "2026-08-03T15:56:18Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-playwright",
+      "alias": "playwright",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.15.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.15.0/AjG9dfJzSvdsNWUC4xf9oaJXqdfqMoY3qRJYvDahoHoC.tar.zst",
+          "published": "2026-11-13T00:42:42Z"
+        },
+        {
+          "tag": "0.14.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.14.0/83Dw68fzvXTQMbcZXupMDB3YiEP6pS6YgKxuTDjuMSAw.tar.zst",
+          "published": "2026-11-06T22:16:55Z"
+        },
+        {
+          "tag": "0.13.1",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.13.1/AWahhV9oKjtqpZNTG5mUK5i86Fy1Lwssrg6yeDG52Bvy.tar.zst",
+          "published": "2026-10-29T15:48:29Z"
+        },
+        {
+          "tag": "0.13.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.13.0/8iK8s82U5DKssLBGrbztTPWN7ymkroW3KtAtCLo7EnJQ.tar.zst",
+          "published": "2026-10-26T11:45:50Z"
+        },
+        {
+          "tag": "0.12.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.12.0/DunUneyGhKTQuQMUctd5hcUSWnU6ngKUGTqQpjXY89Ef.tar.zst",
+          "published": "2026-10-25T18:36:29Z"
+        },
+        {
+          "tag": "0.11.1",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.11.1/GJz6pEptEAmK2FqGnzJQUhF9cymdiV3vwETDdCDevAZ1.tar.zst",
+          "published": "2026-10-04T16:50:39Z"
+        },
+        {
+          "tag": "0.11.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.11.0/38uFJQMuEgrPoPLEDxQ4cwJwFLuYT8eTaVCY1jSxCLaW.tar.zst",
+          "published": "2026-10-04T12:56:19Z"
+        },
+        {
+          "tag": "0.10.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.10.0/ELCrvV4MsjnA4phYGXW3oLW2fH9y1imCxPkxhVnpW9jG.tar.zst",
+          "published": "2026-09-30T19:30:16Z"
+        },
+        {
+          "tag": "0.9.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.9.0/E5bdTmVkrg7NHji7TFzbZmLMcE4J8humEaSVxLXDySem.tar.zst",
+          "published": "2026-08-28T07:35:17Z"
+        },
+        {
+          "tag": "0.8.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.8.0/9boAetfXPFWCmMg5uavT1juSYFRw9zaGsWcfs4qspXde.tar.zst",
+          "published": "2026-08-23T08:31:01Z"
+        },
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.7.0/BW5do1pddeCsifMZcgwV4fjYH5mdy9sNA4moigRTvQNg.tar.zst",
+          "published": "2026-08-10T22:11:36Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-prng",
+      "alias": "prng",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.4.1",
+          "url": "https://github.com/niclas-ahden/roc-prng/releases/download/0.4.1/C3JpBYoPwC9SN5aweoh1Dux2K3iy4vfMTdAsWooE1HF5.tar.zst",
+          "published": "2026-10-25T10:52:11Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/niclas-ahden/roc-prng/releases/download/0.4.0/C3JpBYoPwC9SN5aweoh1Dux2K3iy4vfMTdAsWooE1HF5.tar.zst",
+          "published": "2026-09-17T15:26:18Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/niclas-ahden/roc-prng/releases/download/0.3.0/C8MfdSF4ZCt7RahWC8PCBaj1NB6Y6L6vtiHdeHB1EVnv.tar.zst",
+          "published": "2026-08-25T19:13:28Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-prng/releases/download/0.2.0/2usPM5QhgWY5odvrua7GD7jB94nKXwpzjgi3ygARCzDr.tar.zst",
+          "published": "2026-08-25T10:12:47Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/niclas-ahden/roc-prng/releases/download/0.1.0/DC2wat2ksGgjuWqXQKLfU7NdXRxUyT35GVwJcj4T973K.tar.zst",
+          "published": "2026-08-24T18:34:16Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-scram",
+      "alias": "scram",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.1.1",
+          "url": "https://github.com/niclas-ahden/roc-scram/releases/download/0.1.1/8Fc5qLzjq53oQ5NZxvE2PBUyVUeULCnFHA8t3vH4BwrU.tar.zst",
+          "published": "2026-10-25T11:10:19Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/niclas-ahden/roc-scram/releases/download/0.1.0/5LZNjdSHw4qQtdQcfLy6P5B7dCA9gqa1c16TUZDA6gSz.tar.zst",
+          "published": "2026-09-30T13:15:52Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-sendgrid",
+      "alias": "sendgrid",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-sendgrid/releases/download/0.2.0/GFp74ugf9Z6f9GdeQFzoSRXXKdJpevmqR3AdjuRKwK3F.tar.zst",
+          "published": "2026-10-02T19:11:38Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-spec",
+      "alias": "spec",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/niclas-ahden/roc-spec/releases/download/0.7.0/BGjQKbG9U3V8cH6mRbypUAFVqFoVEu6n9bsA3QmFL1f4.tar.zst",
+          "published": "2026-10-25T17:23:45Z"
+        },
+        {
+          "tag": "0.6.1",
+          "url": "https://github.com/niclas-ahden/roc-spec/releases/download/0.6.1/55UFmX5Ye5dNxWYzbzxQfsE54KTNwaoHNmYan163HbzB.tar.zst",
+          "published": "2026-10-04T16:50:41Z"
+        },
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/niclas-ahden/roc-spec/releases/download/0.6.0/9ThTkhd7zrviwQpM3LvGd7pvzGhr4ZXNmWJV7pTJc9AJ.tar.zst",
+          "published": "2026-09-30T19:04:34Z"
+        },
+        {
+          "tag": "0.5.0",
+          "url": "https://github.com/niclas-ahden/roc-spec/releases/download/0.5.0/AT7cTMFey3aL2SFQZcp2KTTDL82u79WepEy2yUcAtV4A.tar.zst",
+          "published": "2026-09-09T16:16:21Z"
+        },
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/niclas-ahden/roc-spec/releases/download/0.4.0/7fpzAnSVtkGcXL3dCsoK3j6wtebcEYiSSbGEpAMMnZbE.tar.zst",
+          "published": "2026-08-19T16:42:12Z"
+        },
+        {
+          "tag": "0.3.0",
+          "url": "https://github.com/niclas-ahden/roc-spec/releases/download/0.3.0/2v2CV8CLXRJmQRvfoHtPngAUGgE8jL6DDgXbugZhFVf5.tar.zst",
+          "published": "2026-08-03T16:01:09Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-url",
+      "alias": "url",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.7.1",
+          "url": "https://github.com/niclas-ahden/roc-url/releases/download/0.7.1/AuBv5v9TGGUS4yRtC8tLEVyEr7MkaReZCeuu2sYANn8F.tar.zst",
+          "published": "2026-10-25T10:55:07Z"
+        },
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/niclas-ahden/roc-url/releases/download/0.7.0/DCKNTirZCLugy1ZydPLrYpefR71RYq1HFUpgQVSNvaFy.tar.zst",
+          "published": "2026-07-25T18:43:50Z"
+        },
+        {
+          "tag": "0.6.1",
+          "url": "https://github.com/niclas-ahden/roc-url/releases/download/0.6.1/95CwyLo97aKZ5twTy6VtkmmhF6MFKMr7hvPeMi6U7bAF.tar.zst",
+          "published": "2026-07-24T22:34:47Z"
+        },
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/niclas-ahden/roc-url/releases/download/0.6.0/FszHGVKZNFKfY8XmP8nrnCmBAxPuzhbypqCuHYa6YSe3.tar.zst",
+          "published": "2026-07-21T15:22:20Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-vcr",
+      "alias": "vcr",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.2",
+          "url": "https://github.com/niclas-ahden/roc-vcr/releases/download/0.2.2/5ga5z59pDwmvpdq33cHtFgZvyCUAAEQuBu3vAeEzmgH2.tar.zst",
+          "published": "2026-10-31T14:39:29Z"
+        },
+        {
+          "tag": "0.2.1",
+          "url": "https://github.com/niclas-ahden/roc-vcr/releases/download/0.2.1/2AU7Qe7S18zVCv7gnuipacybmAaQYbN6RqNehMKiJ95C.tar.zst",
+          "published": "2026-10-04T16:50:42Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-vcr/releases/download/0.2.0/EDAmTVryPRkfrpLJyyDNEqftSQ7TyUWN9XomuxA1h1dE.tar.zst",
+          "published": "2026-10-02T19:05:15Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-xlsx",
+      "alias": "xlsx",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.6",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.6/5TCxASDUdhnaABJ6RyHmUXA4oKrEuvkSdp7s3d6nf6sh.tar.zst",
+          "published": "2026-10-31T14:46:10Z"
+        },
+        {
+          "tag": "0.2.5",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.5/Fya2LTxchLsnDrwkG41RWTBvtteeHX1ogD4KioMQd7tR.tar.zst",
+          "published": "2026-10-25T17:07:44Z"
+        },
+        {
+          "tag": "0.2.4",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.4/GUFu5SaY8vuMUzrWGBLvUBAv9pZimeT7291jKfnLTHf3.tar.zst",
+          "published": "2026-10-25T11:10:20Z"
+        },
+        {
+          "tag": "0.2.3",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.3/4yThmc79QyXHQ7SHu6ydA8SW8f6QzfHenwa3XNFGuDhX.tar.zst",
+          "published": "2026-10-11T12:32:28Z"
+        },
+        {
+          "tag": "0.2.2",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.2/9hco3vTWu7wGDvJAnAFDDEaGGpfvDPh5HrPcQcMUcqYW.tar.zst",
+          "published": "2026-10-03T19:09:20Z"
+        },
+        {
+          "tag": "0.2.1",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.1/AiwaPxhKJzc5y6h83YiW7mwc6Viw5czWJoPmmPkJ45rx.tar.zst",
+          "published": "2026-09-30T20:53:16Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-xlsx/releases/download/0.2.0/D2yvHqw1VLTcHDwGe3435pJbwLVdWhJdwpJ6yVzvNLpL.tar.zst",
+          "published": "2026-09-18T16:21:04Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-xml",
+      "alias": "xml",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "2.0.5",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/2.0.5/8mU1KkLF5L8UhHVrYwY66QCwH73omXWgDuwhn26ZjJab.tar.zst",
+          "published": "2026-10-31T14:39:22Z"
+        },
+        {
+          "tag": "2.0.4",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/2.0.4/5Lka2dgDPpio7wAVcYmXDpVMPq5TsNXn4Tgw7C6fm964.tar.zst",
+          "published": "2026-10-25T10:52:13Z"
+        },
+        {
+          "tag": "2.0.3",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/2.0.3/5Lka2dgDPpio7wAVcYmXDpVMPq5TsNXn4Tgw7C6fm964.tar.zst",
+          "published": "2026-10-10T21:06:33Z"
+        },
+        {
+          "tag": "2.0.2",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/2.0.2/DmpFQ84o7NWs3kpSgfL41nvqqyhtbnp1d3M177kJEtA2.tar.zst",
+          "published": "2026-10-03T18:43:52Z"
+        },
+        {
+          "tag": "2.0.1",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/2.0.1/8zeT4GUf6DwLZnDJfmwWxtdzEa4e7Ud6aiCtWrQGXiGM.tar.zst",
+          "published": "2026-09-22T14:16:10Z"
+        },
+        {
+          "tag": "2.0.0",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/2.0.0/66gygDre4vwq7EReM2UQdvKQyvCJjCitFaFUuESpkqnR.tar.zst",
+          "published": "2026-09-18T13:45:50Z"
+        },
+        {
+          "tag": "1.0.1",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/1.0.1/CKB1tEoRy7DWSWDQWqwQEdRyF7khLBjYpzbMuz97D2i4.tar.zst",
+          "published": "2026-09-14T14:26:07Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/niclas-ahden/roc-xml/releases/download/1.0.0/8Nm5dN5Z6YKawPkhPqbTUfGVbsQztG8bXTa7RTBKgMbz.tar.zst",
+          "published": "2026-07-06T16:03:54Z"
+        }
+      ]
+    },
+    {
+      "repo": "niclas-ahden/roc-zip",
+      "alias": "zip",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.2",
+          "url": "https://github.com/niclas-ahden/roc-zip/releases/download/0.2.2/FpMTcemHxwRmDRCwnTtcrQeCRnqA5UcJ1TZzYL3iPtA4.tar.zst",
+          "published": "2026-10-25T17:02:01Z"
+        },
+        {
+          "tag": "0.2.1",
+          "url": "https://github.com/niclas-ahden/roc-zip/releases/download/0.2.1/3g966LUUN4qsEWTzmdQsu7Fkd34mQs1miMXnbrWpKKXT.tar.zst",
+          "published": "2026-10-25T11:05:07Z"
+        },
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/niclas-ahden/roc-zip/releases/download/0.2.0/CMyXBXiA3wXpitwxzgfwbygm8UoaSAJTKiUiqDydrTx5.tar.zst",
+          "published": "2026-09-14T12:04:45Z"
+        }
+      ]
+    },
+    {
+      "repo": "obust/terrocotta",
+      "alias": "terrocotta",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/obust/terrocotta/releases/download/0.2.0/Hhcsfh2yPhePMS7YrAkTkTvgrQEqzCVnPK7VeYJvMfwG.tar.zst",
+          "published": "2026-10-22T22:28:53Z"
+        },
+        {
+          "tag": "0.1.0",
+          "url": "https://github.com/obust/terrocotta/releases/download/0.1.0/3eR6ymhbMms6YEKAFMNdasNea8iniM2qjVS6DVZ3Ac4n.tar.zst",
+          "published": "2026-10-13T19:36:47Z"
+        }
+      ]
+    },
+    {
+      "repo": "roc-lang/http",
+      "alias": "http",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "2.0.0",
+          "url": "https://github.com/roc-lang/http/releases/download/2.0.0/6ZUwqYhCS8PU9Mo6MF7oV82ET2o7KYb57CLKDq4cq4sS.tar.zst",
+          "published": "2026-07-25T18:35:27Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/roc-lang/http/releases/download/1.0.0/6ZUwqYhCS8PU9Mo6MF7oV82ET2o7KYb57CLKDq4cq4sS.tar.zst",
+          "published": "2026-07-06T06:49:01Z"
+        },
+        {
+          "tag": "0.1",
+          "url": "https://github.com/roc-lang/http/releases/download/0.1/6LcdNq2r7xTBwj972ecYWUkMWobJr94yL2NyJpHRAXap.tar.zst",
+          "published": "2026-06-27T00:26:00Z"
+        }
+      ]
+    },
+    {
+      "repo": "roc-lang/path",
+      "alias": "path",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "4.0.0",
+          "url": "https://github.com/roc-lang/path/releases/download/4.0.0/7YfABZPwJAXtLBY2vm8FqMyGAtNxncCJ65HdNKHFGNnE.tar.zst",
+          "published": "2026-07-26T21:04:48Z"
+        },
+        {
+          "tag": "3.0.0-rc1",
+          "url": "https://github.com/roc-lang/path/releases/download/3.0.0-rc1/CgzGStCBCM4Cdt3izycwFuXZi5RPUiqSXJEnjSEMgmeG.tar.zst",
+          "published": "2026-07-22T04:46:04Z"
+        },
+        {
+          "tag": "2.0.0",
+          "url": "https://github.com/roc-lang/path/releases/download/2.0.0/6fPkHewxjJj48A6yaApCeXhqfSFwDe77gDD9dcU62qaK.tar.zst",
+          "published": "2026-07-07T06:10:26Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/roc-lang/path/releases/download/1.0.0/8p8iryUUorAFTUDeqYcwc9bFYSwpbVqhYpuHvRAS5Cq4.tar.zst",
+          "published": "2026-07-06T02:10:18Z"
+        },
+        {
+          "tag": "0.1",
+          "url": "https://github.com/roc-lang/path/releases/download/0.1/8p8iryUUorAFTUDeqYcwc9bFYSwpbVqhYpuHvRAS5Cq4.tar.zst",
+          "published": "2026-06-29T02:58:28Z"
+        }
+      ]
+    },
+    {
+      "repo": "roc-lang/unicode",
+      "alias": "unicode",
+      "variant": null,
+      "releases": [
+        {
+          "tag": "4.3.3",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.3.3/AJfFMmhvmbgn7THAF1E1sofC3dZaVWPFmVV7GH8Bc7k7.tar.zst",
+          "published": "2026-11-14T00:07:35Z"
+        },
+        {
+          "tag": "4.3.2",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.3.2/3gvgiWm6BShjHKbNV2zRH6fhC5ZvScZgWF7AnVDWHSdd.tar.zst",
+          "published": "2026-11-08T23:02:01Z"
+        },
+        {
+          "tag": "4.3.1",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.3.1/BNmth7q83JT3Pc2neutkWibVwFwNNNBLhhKfZhmDREeL.tar.zst",
+          "published": "2026-10-26T00:53:49Z"
+        },
+        {
+          "tag": "4.3.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.3.0/7HGaK8HUHMs5judroSmUoS4TjPGZ1kAjPTyPDSCWiSKM.tar.zst",
+          "published": "2026-10-19T01:26:58Z"
+        },
+        {
+          "tag": "4.2.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.2.0/4W8SHzvwet9hH9qZewJ1J1CVQoH7YKA6zyijWFTB3y1w.tar.zst",
+          "published": "2026-09-07T07:02:03Z"
+        },
+        {
+          "tag": "4.1.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.1.0/4n6bqjbVU6WnwtKCDUCP5vtMtA1mPVSMLuEN91dzhPVt.tar.zst",
+          "published": "2026-09-01T00:35:24Z"
+        },
+        {
+          "tag": "4.0.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.0.0/3DGC3M4b2pxaRLg4i8cmxWkm2E2WbCPCLntQzf2mkbUV.tar.zst",
+          "published": "2026-08-14T10:38:42Z"
+        },
+        {
+          "tag": "3.0.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/3.0.0/ACj5ceJnEY6vaejuQArN1naVzcxeThATZrKYYgzJCZJ5.tar.zst",
+          "published": "2026-08-06T06:16:28Z"
+        },
+        {
+          "tag": "2.1.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/2.1.0/9ZvqNzsNkpqFmGTeATAY3BNBD7mP41jqZx2w2N19tBvh.tar.zst",
+          "published": "2026-08-05T06:07:06Z"
+        },
+        {
+          "tag": "2.0.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/2.0.0/9ZvqNzsNkpqFmGTeATAY3BNBD7mP41jqZx2w2N19tBvh.tar.zst",
+          "published": "2026-07-25T18:09:30Z"
+        },
+        {
+          "tag": "1.0.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/1.0.0/7Y6RP8ZkiMq8Vm7qQLGzm8cyEvww5EVT3YekRASH5VBg.tar.zst",
+          "published": "2026-07-04T06:38:19Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "generic": "templates/generic.roc",
+  "templates": {
+    "roc-lang/basic-cli": [
+      {
+        "tag": "0.26.0",
+        "requires": []
+      }
+    ],
+    "roc-lang/basic-webserver": [
+      {
+        "tag": "0.21.0",
+        "requires": [
+          "roc-lang/http"
+        ]
+      }
+    ]
+  }
+}
