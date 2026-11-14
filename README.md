@@ -26,7 +26,9 @@ lukewilliamboswell/roc-ansi,ansi
 `repo` is the GitHub `owner/name`. `alias` is the shorthand used in the
 generated app header (for example `import ansi.ANSI`) and must match
 `^[a-z][a-z0-9_]*$`. Lines starting with `#` and a header row are ignored.
-Repositories and aliases must be unique within a file.
+A repository without variants has exactly one row, in one of the two
+files. Every alias in `platforms.csv` is `pf`; aliases in `packages.csv`
+must be unique.
 
 A repository that publishes several bundles per release (one per build or
 per package) gets one row per variant instead, with an optional third column
@@ -59,8 +61,12 @@ lukewilliamboswell/roc-ray,0.12.2,9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3,w
 ```
 
 The hash must be 44 base58 characters, the repository must have variant rows,
-and the variant must be one of them, declared in either file. Rows never change, because hashes are
-permanent; once upstream prefixes its filenames, new releases need no rows.
+and the variant must be one of them, declared in either file. Rows never
+change, because hashes are permanent; once upstream prefixes its filenames,
+new releases need no rows. A row is consulted only for a bare bundle that
+shares its release with other bundles: a lone bare bundle always goes to the
+default variant, and a prefixed bundle always follows its prefix, so a row
+for either has no effect.
 
 The pull request template asks you to confirm three things: the repository has
 at least one release whose bundle is a `.tar.zst` built with the new Roc
