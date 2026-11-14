@@ -295,8 +295,9 @@ Triggers: nightly cron and `workflow_dispatch`.
    `templates.json`, and a copy of `templates/` into an output directory,
    plus the list of unresolved releases to a file outside it. If every
    fetch failed the step fails and the later steps do not run. A repository that returns 404 or any other error is
-   recorded as a warning in the job log and listed with an empty `releases`
-   array; it never fails the job.
+   recorded as a warning in the job log and keeps the releases from the
+   previous publish (an empty array if it has none); one failure never
+   fails the job, but every fetch failing does.
 3. Compare the output directory with the current `gh-pages` content. Commit
    and push only when something changed, so the Pages deploy is skipped on
    quiet nights.
