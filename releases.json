@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T18:03:25Z",
+  "generated": "2026-11-15T10:55:51Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -589,6 +589,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "v0.4.0",
+          "url": "https://github.com/imclerran/rtils/releases/download/v0.4.0/iEHXJpLzVxkyEBuzR6uK2H9TC2T3by7Z7z22rdX4QZu.tar.zst",
+          "published": "2026-11-14T18:39:50Z"
+        },
+        {
           "tag": "v0.3.0",
           "url": "https://github.com/imclerran/rtils/releases/download/v0.3.0/EXiBNd2GnAyjgUAEvN2xqwASvKK4RQ1JMs4hSh6t2axc.tar.zst",
           "published": "2026-11-13T02:34:37Z"
@@ -888,6 +893,11 @@
       "alias": "parser",
       "variant": null,
       "releases": [
+        {
+          "tag": "6.0.0-rc.3",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.3/FTL1xt1rA9nXzoYkhFAW9yF75Kn52bS3cpBr7wZNfPq2.tar.zst",
+          "published": "2026-11-15T02:34:05Z"
+        },
         {
           "tag": "6.0.0-rc.2",
           "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.2/2H2hePe5iYTZaGdG9MbMqhS29yg4Zxxr7dPEbZJ96fME.tar.zst",
