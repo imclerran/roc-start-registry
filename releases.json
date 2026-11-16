@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T10:55:51Z",
+  "generated": "2026-11-16T11:22:09Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -285,6 +285,11 @@
       "alias": "pf",
       "variant": "default",
       "releases": [
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.6.0/3kWiwEo2KWAQTrPidpkPTMNGCY6AX7qup9K6tJVYMhB9.tar.zst",
+          "published": "2026-11-16T03:06:47Z"
+        },
         {
           "tag": "0.5.0",
           "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.5.0/2SYUPo9uKFPJDvTyXiwsLEqHvmq7UMgaY4hdgMiSsSEF.tar.zst",
@@ -1042,6 +1047,11 @@
       "alias": "signals",
       "variant": "signals",
       "releases": [
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.6.0/signals-421MTKPAaTD4fDJijaKVkbyJYj7f2Xa3vPAQLpdwK8fj.tar.zst",
+          "published": "2026-11-16T03:06:47Z"
+        },
         {
           "tag": "0.5.0",
           "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.5.0/signals-DTxcfjXp6v7rGZ66rh9bazYz3UWMn8d85SiMUjMV9TDV.tar.zst",
