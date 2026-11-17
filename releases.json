@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16T11:22:09Z",
+  "generated": "2026-11-17T11:54:43Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -9,6 +9,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.16.0",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.16.0/8TC9CBHaqfmhhovuvKHKFYfLffwmZN4XpSF2jPHTw1Nm.tar.zst",
+          "published": "2026-11-16T17:49:13Z"
+        },
         {
           "tag": "0.15.0",
           "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.15.0/G5UJMRY1skYc7EWncQUEjzSRq9ock86wWE3VqzVsjBWS.tar.zst",
@@ -488,6 +493,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.22.0",
+          "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.22.0/BM2BUXA8mwbcoKPUfRV8cLtsUdnsSBPwjNLPRUJQAQ7Q.tar.zst",
+          "published": "2026-11-16T13:53:01Z"
+        },
         {
           "tag": "0.21.0",
           "url": "https://github.com/roc-lang/basic-webserver/releases/download/0.21.0/4viZsnWjdYsyH4Q87ESFAwM5c55Hnc15nAGW1UwzWpFU.tar.zst",
