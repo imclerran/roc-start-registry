@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T11:44:39Z",
+  "generated": "2026-11-19T11:42:10Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -56,6 +56,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.7.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.7.0/HBigHQhVZWEF2EkLxpYK35u8P6UNsAmPYxpNFTxXK1Br.tar.zst",
+          "published": "2026-11-18T22:34:59Z"
+        },
         {
           "tag": "0.7.0-rc1",
           "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.7.0-rc1/HBigHQhVZWEF2EkLxpYK35u8P6UNsAmPYxpNFTxXK1Br.tar.zst",
@@ -267,6 +272,11 @@
       "variant": "default",
       "releases": [
         {
+          "tag": "0.12.3",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.3/default-5dNxpAJgNbQLwNCvyiSS44ReCG5bm2v34uKzFQH97rWC.tar.zst",
+          "published": "2026-11-19T03:29:13Z"
+        },
+        {
           "tag": "0.12.2",
           "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.2/A8Dt5CorYsEtHFh8h7SfMtpzSy73UWbaB5Twy9JoYS1U.tar.zst",
           "published": "2026-11-12T05:35:23Z"
@@ -284,6 +294,11 @@
       "variant": "wayland",
       "releases": [
         {
+          "tag": "0.12.3",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.3/wayland-D4eZWzXDs3ZMp8uD92h7Y8bsgZ14XzsGfsbWkV2CacJ4.tar.zst",
+          "published": "2026-11-19T03:29:13Z"
+        },
+        {
           "tag": "0.12.2",
           "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.2/9B352s7r2amTHa93oh9UPFbAeQTvWbesEUHJhSyK8tR3.tar.zst",
           "published": "2026-11-12T05:35:23Z"
@@ -295,6 +310,11 @@
       "alias": "pf",
       "variant": "default",
       "releases": [
+        {
+          "tag": "0.7.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.7.0-rc1/EWXzR62Lkva6BKW4qbvpkHHEsR6ZswDBXi2sef7Sf9Mk.tar.zst",
+          "published": "2026-11-19T03:30:10Z"
+        },
         {
           "tag": "0.6.0",
           "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.6.0/3kWiwEo2KWAQTrPidpkPTMNGCY6AX7qup9K6tJVYMhB9.tar.zst",
@@ -734,6 +754,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.14.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.14.0/2aWww1JQLjrJdf18oHrZsxsRS9xkDU8RPsNAWwXHdxDc.tar.zst",
+          "published": "2026-11-18T23:17:46Z"
+        },
+        {
           "tag": "0.13.5",
           "url": "https://github.com/lukewilliamboswell/roc-ansi/releases/download/0.13.5/BioPdu7WjVhTB2j1HaomKMi8htxsuwqwr79GbXY5nAUf.tar.zst",
           "published": "2026-11-09T03:22:28Z"
@@ -791,6 +816,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.1.2",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.2/3JcFLxX7P572R7BwYN1rNMm8kZh6HQnrVQL1oXetMmMX.tar.zst",
+          "published": "2026-11-19T00:19:00Z"
+        },
+        {
           "tag": "0.1.1",
           "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.1/3Es9Gca6KTySYDqcDPHwVqpAqJk6KwT9G4xkcLoYaSsx.tar.zst",
           "published": "2026-11-11T01:30:16Z"
@@ -828,6 +858,11 @@
       "variant": "layout",
       "releases": [
         {
+          "tag": "0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.4.0/layout-21Hp5xxSFLU3WN25NxREEzxZ8JHqEBTt9j3VNRJkLCL4.tar.zst",
+          "published": "2026-11-19T02:18:06Z"
+        },
+        {
           "tag": "0.3.1",
           "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.1/layout-A3CBTbdsMzJdxUtRtceC4u4PX9uic9TxFTPF5HnnKmmP.tar.zst",
           "published": "2026-11-09T12:24:56Z"
@@ -859,6 +894,11 @@
       "alias": "mermaid",
       "variant": "mermaid",
       "releases": [
+        {
+          "tag": "0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.4.0/mermaid-GGurUnvtW1WKWrLQd3LxYtugyMJqxktj8tqewZdByAzf.tar.zst",
+          "published": "2026-11-19T02:18:06Z"
+        },
         {
           "tag": "0.3.1",
           "url": "https://github.com/lukewilliamboswell/roc-graph-layout/releases/download/0.3.1/mermaid-CLpW9krKNwUvfGgajVrRjEhbu2F4sNqKYYfLoTmgEXRh.tar.zst",
@@ -913,6 +953,11 @@
       "alias": "parser",
       "variant": null,
       "releases": [
+        {
+          "tag": "6.0.0-rc.5",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.5/822J9njyNR1vgyX1KG4ck496dBx3AnLfvn2zHXn15Ksw.tar.zst",
+          "published": "2026-11-19T00:27:00Z"
+        },
         {
           "tag": "6.0.0-rc.4",
           "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.4/3f9bQPSNG4wotib93CSYJ1zRu1XTPzdZg31BFx7cqunY.tar.zst",
@@ -1006,6 +1051,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.4.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.4.0/4birRt4WMdgUvECy9sThGynNBvXbPFxRuEh3toQebwyP.tar.zst",
+          "published": "2026-11-19T03:02:42Z"
+        },
+        {
           "tag": "0.3.0",
           "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.3.0/A69rkkudc2QNY4ENfKT4e428pwy955uRYMh4sKVvwkQA.tar.zst",
           "published": "2026-11-09T04:41:56Z"
@@ -1068,6 +1118,11 @@
       "variant": "signals",
       "releases": [
         {
+          "tag": "0.7.0-rc1",
+          "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.7.0-rc1/signals-7L8uzC1ULY1LeXtH3RRJT6Shj93Ad3LQ4khhVS9tBFeh.tar.zst",
+          "published": "2026-11-19T03:30:10Z"
+        },
+        {
           "tag": "0.6.0",
           "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.6.0/signals-421MTKPAaTD4fDJijaKVkbyJYj7f2Xa3vPAQLpdwK8fj.tar.zst",
           "published": "2026-11-16T03:06:47Z"
@@ -1089,6 +1144,11 @@
       "alias": "weaver",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.11.0",
+          "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.11.0/7CdYzjBAJmprmnK45oTpmH6BXt76ZASN2Ck5uZQEoWsK.tar.zst",
+          "published": "2026-11-18T22:19:44Z"
+        },
         {
           "tag": "0.10.2",
           "url": "https://github.com/lukewilliamboswell/weaver/releases/download/0.10.2/7CdYzjBAJmprmnK45oTpmH6BXt76ZASN2Ck5uZQEoWsK.tar.zst",
