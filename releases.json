@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-21T11:04:06Z",
+  "generated": "2026-11-22T11:27:17Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -148,6 +148,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-gui/releases/download/0.2.0/7e8PwXuqfn3gowVW35HTKrJzwbMyjXS6sQjzZYw2LMFW.tar.zst",
+          "published": "2026-11-21T13:17:07Z"
+        },
         {
           "tag": "0.1.0",
           "url": "https://github.com/lukewilliamboswell/roc-gui/releases/download/0.1.0/5QqJ8taNJhmRPWiTkT4kJM8SnQrw6rbTH1eyaGt3By4o.tar.zst",
@@ -1448,6 +1453,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.2.1",
+          "url": "https://github.com/niclas-ahden/roc-md5/releases/download/0.2.1/GtJzcGEkJVDWEiViCZ3K7qDNB5dqHh5SMWP21nDaMPcY.tar.zst",
+          "published": "2026-11-21T13:15:53Z"
+        },
+        {
           "tag": "0.2.0",
           "url": "https://github.com/niclas-ahden/roc-md5/releases/download/0.2.0/CGfCKDZFS46am7jECn4V7pqQZnHAXkxuRJvN5ukZArUa.tar.zst",
           "published": "2026-10-25T11:45:01Z"
@@ -1487,6 +1497,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.2.3",
+          "url": "https://github.com/niclas-ahden/roc-openapi/releases/download/0.2.3/ziYQCpwuqa1eENPUjYNw6jkhfy4Ktchva27NWVwoAhS.tar.zst",
+          "published": "2026-11-21T13:15:54Z"
+        },
+        {
           "tag": "0.2.2",
           "url": "https://github.com/niclas-ahden/roc-openapi/releases/download/0.2.2/B4ctbxsWeVVdMKDTU2Jk2PTMUbcKe4yJSC19jEmBjbk8.tar.zst",
           "published": "2026-11-12T08:56:36Z"
@@ -1508,6 +1523,11 @@
       "alias": "pg",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.5.4",
+          "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.5.4/Gf5P1QxtUx2T4sW4yCsCNNV8hok8MGSsjEnvALAVJ3Yk.tar.zst",
+          "published": "2026-11-21T13:19:55Z"
+        },
         {
           "tag": "0.5.3",
           "url": "https://github.com/niclas-ahden/roc-pg/releases/download/0.5.3/GHArBE4QrXKDpttdxtb8GQWXZWhWSuMBgA73qRoETm8r.tar.zst",
