@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-22T11:27:17Z",
+  "generated": "2026-11-23T12:46:38Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -9,6 +9,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.16.1",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.16.1/4VEduWR78R5y4SVypbTF1xBX52J8JxWTw1ufoPpzVcYg.tar.zst",
+          "published": "2026-11-23T11:16:36Z"
+        },
         {
           "tag": "0.16.0",
           "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.16.0/8TC9CBHaqfmhhovuvKHKFYfLffwmZN4XpSF2jPHTw1Nm.tar.zst",
@@ -974,6 +979,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "6.0.0-rc.3.1",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.3.1/BBUDV8ak5oBCYRjWbQ3zNDBjXFVZydTdMPswovVkMUsT.tar.zst",
+          "published": "2026-11-22T23:33:22Z"
+        },
+        {
           "tag": "6.0.0-rc.5",
           "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.5/822J9njyNR1vgyX1KG4ck496dBx3AnLfvn2zHXn15Ksw.tar.zst",
           "published": "2026-11-19T00:27:00Z"
@@ -1575,6 +1585,11 @@
       "alias": "playwright",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.15.2",
+          "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.15.2/BFCzMMp3DePaKT1sLy1m38p7qS5QB3okSVoFy6A1Y3Jf.tar.zst",
+          "published": "2026-11-23T11:05:11Z"
+        },
         {
           "tag": "0.15.1",
           "url": "https://github.com/niclas-ahden/roc-playwright/releases/download/0.15.1/3tP6sNB4zffazkHJkdzQTxcme4m7x2Fk6fzL7zFKj4C6.tar.zst",
