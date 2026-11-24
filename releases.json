@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-23T12:46:38Z",
+  "generated": "2026-11-24T13:45:02Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -9,6 +9,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.16.2",
+          "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.16.2/5A3CxTLQNwJ4g1Fx1DCCx7du6bytCLUKJ6KnJ7f19JyG.tar.zst",
+          "published": "2026-11-24T02:39:51Z"
+        },
         {
           "tag": "0.16.1",
           "url": "https://github.com/lukewilliamboswell/basic-ssg/releases/download/0.16.1/4VEduWR78R5y4SVypbTF1xBX52J8JxWTw1ufoPpzVcYg.tar.zst",
@@ -61,6 +66,11 @@
       "alias": "pf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.8.0",
+          "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.8.0/BUNcJDHxCd7xLVSe3WBioyXqR6tm1MqXwzwGgtnmqK43.tar.zst",
+          "published": "2026-11-24T10:28:39Z"
+        },
         {
           "tag": "0.7.0",
           "url": "https://github.com/lukewilliamboswell/roc-fuzz/releases/download/0.7.0/HBigHQhVZWEF2EkLxpYK35u8P6UNsAmPYxpNFTxXK1Br.tar.zst",
@@ -703,6 +713,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.2.1",
+          "url": "https://github.com/Karakatiza666/roc-semver/releases/download/0.2.1/6BPnjRNpioc4pS8vxuiYDV3kNi13wMC6emA4qiPHK75L.tar.zst",
+          "published": "2026-11-23T19:32:41Z"
+        },
+        {
           "tag": "0.2.0",
           "url": "https://github.com/Karakatiza666/roc-semver/releases/download/0.2.0/BzgH68Q1yBkg7F1ZpFsiEg73ZwkaBrFdcLpX2pUkay9i.tar.zst",
           "published": "2026-11-01T17:20:20Z"
@@ -719,6 +734,11 @@
       "alias": "toml",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.2.0",
+          "url": "https://github.com/Karakatiza666/roc-toml/releases/download/0.2.0/2jDX3pSSC7cpPb3iuoemnX1BkYJfsxQTHB2p2vBsUzz7.tar.zst",
+          "published": "2026-11-23T19:32:56Z"
+        },
         {
           "tag": "0.1.0",
           "url": "https://github.com/Karakatiza666/roc-toml/releases/download/0.1.0/3icmtKz6XQUyHqu5JftcoJJT6a9YTND1B8z1UAmtqJpN.tar.zst",
@@ -947,6 +967,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.2.4",
+          "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.2.4/HxzXVwyUykMzb7sC7p51qwopSMrcGjwrKUcL8Ees1uaf.tar.zst",
+          "published": "2026-11-24T02:32:13Z"
+        },
+        {
           "tag": "0.2.3",
           "url": "https://github.com/lukewilliamboswell/roc-pandoc/releases/download/0.2.3/HxzXVwyUykMzb7sC7p51qwopSMrcGjwrKUcL8Ees1uaf.tar.zst",
           "published": "2026-11-09T03:31:00Z"
@@ -978,6 +1003,11 @@
       "alias": "parser",
       "variant": null,
       "releases": [
+        {
+          "tag": "6.0.0",
+          "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0/7j67bdgEMRsua6VnhcYASXRymN5pYgUC9qV4bHFupbf9.tar.zst",
+          "published": "2026-11-24T03:04:41Z"
+        },
         {
           "tag": "6.0.0-rc.3.1",
           "url": "https://github.com/lukewilliamboswell/roc-parser/releases/download/6.0.0-rc.3.1/BBUDV8ak5oBCYRjWbQ3zNDBjXFVZydTdMPswovVkMUsT.tar.zst",
@@ -1231,6 +1261,11 @@
       "alias": "html",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.18.0",
+          "url": "https://github.com/niclas-ahden/joy-html/releases/download/0.18.0/6XAQypURmG12GNMHHZmjcXVGtctYy52mmPZoaUMWejRK.tar.zst",
+          "published": "2026-11-23T17:39:27Z"
+        },
         {
           "tag": "0.17.1",
           "url": "https://github.com/niclas-ahden/joy-html/releases/download/0.17.1/AcmwFzyfbsf5RALWNdX6cXw1cuuDXt96YfcysNqgFqoG.tar.zst",
