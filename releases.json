@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T13:45:02Z",
+  "generated": "2026-11-25T12:57:46Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -302,6 +302,11 @@
       "variant": "default",
       "releases": [
         {
+          "tag": "0.13.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.13.0/default-8yWQXdFMfK8erQff7bMEjF6KjrwFR6sTq9EY4LURGgBw.tar.zst",
+          "published": "2026-11-25T06:50:34Z"
+        },
+        {
           "tag": "0.12.3",
           "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.3/default-5dNxpAJgNbQLwNCvyiSS44ReCG5bm2v34uKzFQH97rWC.tar.zst",
           "published": "2026-11-19T03:29:13Z"
@@ -323,6 +328,11 @@
       "alias": "pf",
       "variant": "wayland",
       "releases": [
+        {
+          "tag": "0.13.0",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.13.0/wayland-DtNESPBhqKozdsads2jCX1haCqNccMcySfVEKwxPchxp.tar.zst",
+          "published": "2026-11-25T06:50:34Z"
+        },
         {
           "tag": "0.12.3",
           "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.12.3/wayland-D4eZWzXDs3ZMp8uD92h7Y8bsgZ14XzsGfsbWkV2CacJ4.tar.zst",
