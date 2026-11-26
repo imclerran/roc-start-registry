@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-25T12:57:46Z",
+  "generated": "2026-11-26T12:37:09Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -302,6 +302,11 @@
       "variant": "default",
       "releases": [
         {
+          "tag": "0.13.1",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.13.1/default-8QntQnkNftNUXPXxWjhxrzjqcvZ22MeLRbjFbDSfQzqT.tar.zst",
+          "published": "2026-11-26T00:40:03Z"
+        },
+        {
           "tag": "0.13.0",
           "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.13.0/default-8yWQXdFMfK8erQff7bMEjF6KjrwFR6sTq9EY4LURGgBw.tar.zst",
           "published": "2026-11-25T06:50:34Z"
@@ -328,6 +333,11 @@
       "alias": "pf",
       "variant": "wayland",
       "releases": [
+        {
+          "tag": "0.13.1",
+          "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.13.1/wayland-2KAsaT1MLyWnGGfmH7EdSoWuFsL5oUD6zbrB4ZJcKLon.tar.zst",
+          "published": "2026-11-26T00:40:03Z"
+        },
         {
           "tag": "0.13.0",
           "url": "https://github.com/lukewilliamboswell/roc-ray/releases/download/0.13.0/wayland-DtNESPBhqKozdsads2jCX1haCqNccMcySfVEKwxPchxp.tar.zst",
@@ -871,6 +881,11 @@
       "variant": null,
       "releases": [
         {
+          "tag": "0.2.0",
+          "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.2.0/FQLdPYwz6xJD3n7Bg3Y8ACd3Aym4aYvBGybd9Z3tAnjN.tar.zst",
+          "published": "2026-11-26T03:21:17Z"
+        },
+        {
           "tag": "0.1.2",
           "url": "https://github.com/lukewilliamboswell/roc-font/releases/download/0.1.2/3JcFLxX7P572R7BwYN1rNMm8kZh6HQnrVQL1oXetMmMX.tar.zst",
           "published": "2026-11-19T00:19:00Z"
@@ -1303,6 +1318,11 @@
       "alias": "base64",
       "variant": null,
       "releases": [
+        {
+          "tag": "1.0.3",
+          "url": "https://github.com/niclas-ahden/roc-base64/releases/download/1.0.3/NnPiigz8foJaTpjCYykaPBb3H48jpMCQEoj6nrE73k3.tar.zst",
+          "published": "2026-11-25T20:40:54Z"
+        },
         {
           "tag": "1.0.2",
           "url": "https://github.com/niclas-ahden/roc-base64/releases/download/1.0.2/DQBxATK6BtaCWe56bCmkMgdKJR2Ym8NiZZLhYCAgtLac.tar.zst",
@@ -2061,6 +2081,11 @@
       "alias": "unicode",
       "variant": null,
       "releases": [
+        {
+          "tag": "4.4.0",
+          "url": "https://github.com/roc-lang/unicode/releases/download/4.4.0/9qGDBYdjWTJFMhauxdUMpWHDQuzRd4E4E2dtBDHNffnS.tar.zst",
+          "published": "2026-11-26T02:56:57Z"
+        },
         {
           "tag": "4.3.3",
           "url": "https://github.com/roc-lang/unicode/releases/download/4.3.3/AJfFMmhvmbgn7THAF1E1sofC3dZaVWPFmVV7GH8Bc7k7.tar.zst",
