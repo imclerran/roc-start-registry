@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-27T12:24:04Z",
+  "generated": "2026-11-28T11:48:11Z",
   "roc": {
     "nightly": "nightly-2026-11-13-03dce41"
   },
@@ -1135,6 +1135,11 @@
       "alias": "pdf",
       "variant": null,
       "releases": [
+        {
+          "tag": "0.6.0",
+          "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.6.0/92FuzV6jfMirJt255b2HbswRf1xgAX7XFQQ6DdYosc5J.tar.zst",
+          "published": "2026-11-28T08:30:25Z"
+        },
         {
           "tag": "0.5.0",
           "url": "https://github.com/lukewilliamboswell/roc-pdf/releases/download/0.5.0/GVRPsFRjhn7Z2vXnrWK9ietEkHGtjFP3b69R5ma792XY.tar.zst",
